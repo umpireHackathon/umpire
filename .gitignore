@@ -201,6 +201,29 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.db
+*.log
+*.hprof
+*.dSYM
+*.class
+*.jar
+*.war
+*.ear
+*.db
+*.log
+*.hprof
+*.dSYM
+
+# IntelliJ IDEA
+.idea/
+
+
 # Marimo
 marimo/_static/
 marimo/_lsp/
