@@ -45,6 +45,6 @@ On Windows PowerShell:
 Below are the contributors to the project:
 
 - [Andrew](https://github.com/kojomensahonums)
-- [Adobea]()
-- [William]()
+- [Adobea](https://github.com/adobea-dev)
+- [William](https://github.com/williamgrey1)
 - [Samuel Amihere](https://github.com/SamuelAmihere)

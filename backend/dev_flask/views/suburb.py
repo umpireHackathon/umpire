@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Renders amenities info"""
-from backend.flask.views import app_views
+from backend.dev_flask.views import app_views
 
 from backend.models import storage
 from backend.models.suburb import Suburb

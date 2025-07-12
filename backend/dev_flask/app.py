@@ -9,7 +9,7 @@ from flask import Flask
 from werkzeug.exceptions import HTTPException
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from backend.flask.views import app_views
+from backend.dev_flask.views import app_views
 
 load_dotenv()
 
@@ -60,9 +60,6 @@ def index():
     This function is mapped to the root URL ('/') of the Flask application.
     """
     return "Welcome to the Umpire API! Use /backend/flask for API access."
-
-
-
 
 
 if __name__ == '__main__':
