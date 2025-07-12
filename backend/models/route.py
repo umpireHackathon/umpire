@@ -59,31 +59,3 @@ class Route(BaseModel, Base):
                 if self.id in [route.id for route in terminal.routes]:
                     terminal_lists.append(terminal)
             return terminal_lists
-
-        @stops.setter
-        def stops(self, value):
-            """Setter for stops"""
-
-            if not isinstance(value, BusStop):
-                raise TypeError("Expected a BusStop instance")
-
-            if value not in self.stops:
-                self.stops.append(value)
-        @terminals.setter
-        def terminals(self, value):
-            """Setter for terminals"""
-
-            if not isinstance(value, Terminal):
-                raise TypeError("Expected a Terminal instance")
-
-            if value not in self.terminals:
-                self.terminals.append(value)
-        @vehicles.setter
-        def vehicles(self, value):
-            """Setter for vehicles"""
-
-            if not isinstance(value, Vehicle):
-                raise TypeError("Expected a Vehicle instance")
-
-            if value not in self.vehicles:
-                self.vehicles.append(value)
