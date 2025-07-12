@@ -21,6 +21,7 @@ PGPORT=5432
 
 Make sure the following SQL files exist in the data/ directory:
 - create_db.sql: Contains the CREATE DATABASE command.
+- create_tables.sql  Contains the CREATE TABLE commands.
 
 Depending on your platform:
 
@@ -33,6 +34,10 @@ On Windows PowerShell:
 ```
 > .\create_postgres_db.ps1
 ```
+14 different tables are created
+
+![plot](./assets/schema.png)
+
 ## Assigned Tasks
 
 1. ML:
