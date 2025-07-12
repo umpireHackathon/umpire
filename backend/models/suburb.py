@@ -1,6 +1,7 @@
 from os import getenv
 
 from backend import models
+from backend.models import storage_type
 from backend.models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
@@ -9,16 +10,15 @@ from backend.models.bus_stop import BusStop
 
 class Suburb(BaseModel, Base):
     """ The suburb class, contains suburb ID and name """
-    if getenv("UMPIRE_TYPE_STORAGE") == "db":
+    if storage_type == "db":
         __tablename__ = 'suburbs'
-        
-        id = Column(Integer, primary_key=True)
         name = Column(String, nullable=False)
         latitude = Column(Float, nullable=False)
         longitude = Column(Float, nullable=False)
         
         # Relationship to BusStop
         bus_stops = relationship("BusStop", back_populates="suburb")
+
     else:
         id = ""
         name = ""

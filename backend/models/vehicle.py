@@ -1,10 +1,16 @@
+from backend.models import storage_type
 
+from backend import models
+from backend.models.base_model import BaseModel, Base
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean
+from sqlalchemy.orm import relationship
+from backend.models.route import Route
+from backend.models.association import routed_vehicles 
 
 class Vehicle(BaseModel, Base):
     """ The vehicle class, contains vehicle ID and name """
-    if getenv("UMPIRE_TYPE_STORAGE") == "db":
+    if storage_type == "db":
         __tablename__ = 'vehicles'
-        id = Column(Integer, primary_key=True)
         name = Column(String(128), nullable=False)
         vehicle_number = Column(String(128), nullable=False)
         latitude = Column(Float, nullable=True)
@@ -15,7 +21,6 @@ class Vehicle(BaseModel, Base):
         routes = relationship("Route", secondary=routed_vehicles, back_populates="vehicles")
 
     else:
-        id = ""
         name = ""
         vehicle_number = ""
         latitude = 0.0

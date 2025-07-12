@@ -223,6 +223,8 @@ cython_debug/
 # IntelliJ IDEA
 .idea/
 
+# sql
+*.sql
 
 # Marimo
 marimo/_static/
