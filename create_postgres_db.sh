@@ -1,58 +1,50 @@
 #!/bin/bash
 
-# ------------------------------------------------------------------------------
-# DESCRIPTION:
-#   Creates PostgreSQL database and user by running SQL from create_db.sql 
-#   using credentials defined in a .env file.
-# AUTHOR:
-#   Your Name
-# DATE:
-#   2025-07-12
-# ------------------------------------------------------------------------------
+# ============================================================================
+# Script to create PostgreSQL database and tables using .env credentials
+# ============================================================================
 
-# Define file paths
-ENV_FILE=".env"
-CREATE_DB_SQL="data/create_db.sql"
-PRIVILEGES_SQL="data/create_user_privileges.sql"
-
-# Exit immediately on error
 set -e
 
-# Check if .env file exists
+ENV_FILE=".env"
+SQL_CREATE_DB="data/create_db.sql"
+SQL_CREATE_TABLES="data/create_tables.sql"
+
+# --- Load .env variables ---
 if [[ ! -f "$ENV_FILE" ]]; then
-  echo "❌ .env file not found. Please create one with PGUSER, PGPASSWORD, PGHOST, and PGPORT."
+  echo ".env file not found. Please create one with PGUSER, PGPASSWORD, PGHOST, and PGPORT."
   exit 1
 fi
 
-# Load environment variables from .env
+# Export each key=value in .env
 export $(grep -v '^#' "$ENV_FILE" | xargs)
 
-# Check required variables
-for var in PGUSER PGPASSWORD PGHOST PGPORT; do
-  if [[ -z "${!var}" ]]; then
-    echo "❌ Missing $var in .env file."
+# Validate required environment variables
+REQUIRED_VARS=("PGUSER" "PGPASSWORD" "PGHOST" "PGPORT")
+for VAR in "${REQUIRED_VARS[@]}"; do
+  if [[ -z "${!VAR}" ]]; then
+    echo "$VAR is missing in .env file."
     exit 1
   fi
 done
 
-# Check if SQL files exist
-if [[ ! -f "$CREATE_DB_SQL" ]]; then
-  echo "❌ $CREATE_DB_SQL not found."
-  exit 1
-fi
+# --- Function to run SQL file ---
+run_sql_file() {
+  local sql_file=$1
+  local db_name=$2
 
-if [[ ! -f "$PRIVILEGES_SQL" ]]; then
-  echo "❌ $PRIVILEGES_SQL not found."
-  exit 1
-fi
+  if [[ ! -f "$sql_file" ]]; then
+    echo "SQL file not found: $sql_file"
+    exit 1
+  fi
 
-# Step 1: Create database (will fail silently if it already exists)
-echo "📦 Creating database (ignore error if it already exists)..."
-psql -U "$PGUSER" -h "$PGHOST" -p "$PGPORT" -f "$CREATE_DB_SQL" || echo "⚠️ Database may already exist."
+  echo "Running script: $sql_file on database: $db_name ..."
+  PGPASSWORD=$PGPASSWORD psql -U "$PGUSER" -h "$PGHOST" -p "$PGPORT" -d "$db_name" -f "$sql_file"
+  echo "Successfully executed: $sql_file"
+}
 
-# Step 2: Create user and grant privileges
-echo "🔐 Creating user and assigning privileges..."
-psql -U "$PGUSER" -h "$PGHOST" -p "$PGPORT" -d umpire_db -f "$PRIVILEGES_SQL"
+# --- Run SQL scripts ---
+run_sql_file "$SQL_CREATE_DB" "postgres"
+run_sql_file "$SQL_CREATE_TABLES" "umpire_db"
 
-# Done
-echo "✅ PostgreSQL database and user setup complete."
+echo "All scripts executed successfully."
