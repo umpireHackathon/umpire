@@ -20,3 +20,9 @@ agency_terminals = Table(
     Column('agency_id', Integer, ForeignKey('agencies.id'), primary_key=True),
     Column('terminal_id', Integer, ForeignKey('terminals.id'), primary_key=True)
 )
+
+route_agencies = Table(
+    'route_agencies', Base.metadata,
+    Column('route_id', Integer, ForeignKey('routes.id'), primary_key=True),
+    Column('agency_id', Integer, ForeignKey('agencies.id'), primary_key=True)
+)

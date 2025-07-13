@@ -1,0 +1,652 @@
+route_id,name,distance_km
+002A,37 Lorry Park to Osu Blow Up,3.966941305204266
+002B,Osu Blow Up to 37 Lorry Park,3.966941305204266
+003A,37 Lorry Park to Tse Addo,4.556766194583605
+003B,Tse Addo to 37 Lorry Park,4.556766194583605
+004A,Abeka lapaz to Ashaiman Station,25.343252571344014
+004B,Ashiaman Station to Abeka lapaz,24.318201598425635
+005A,Abeka lapaz to Ashalaja,14.636150613759828
+005B,Ashalaja to Abeka lapaz,14.636150613759828
+006A,Abeka lapaz to Sakumono station,19.72130058748391
+006B,Sakumono station to Abeka lapaz,19.72130058748391
+007A,Abeka lapaz to Taifa Station,5.668225856117587
+007B,Taifa Station to Abeka lapaz,5.668225856117587
+008A,Abeka lapaz to Tema Main Habour Round About,27.987915602861364
+008B,008B,6.230995527456134
+009A,Abeka lapaz to Adeiman,17.894503245175965
+009B,Adeiman to Abeka lapaz,17.894503245175965
+010A,Abeka lapaz to Amasaman,12.25129016000559
+010B,Amasaman to Abeka lapaz,12.25129016000559
+011A,Abeka lapaz to Circle,4.299368739260845
+011B,Circle to Abeka lapaz,5.4604432231595
+012A,Abeka lapaz to Circle Opps. Vodafone,5.169143481554987
+012B,Alajo Station to Abeka lapaz,3.412967715668611
+013A,Abeka lapaz to Circle,5.4604432231595
+013B,Lido Terminal (Circle Overhead) to G,4.536185517877396
+014A,Abeka lapaz to Circle,5.4604432231595
+014B,Accra CMB to Abeka lapaz,7.30442109894794
+015A,Abeka lapaz to D.K. Last stop,9.814675819170679
+015B,Kwabenya to Abeka lapaz,9.585985117662853
+016A,Abeka lapaz to Sarpeiman,14.278002416963716
+016B,Sarpeiman to Abeka lapaz,14.278002416963716
+017A,017A,21.082910195066766
+017B,017B,20.905945508333854
+018A,Abeka lapaz to Kasoa Station,21.154913468545715
+018B,Kasoa Station to Abeka lapaz,21.154913468545715
+019A,Abeka lapaz to Kotoku Terminal,19.117866796330063
+019B,Kotoku Terminal to Abeka lapaz,19.117866796330063
+020A,020A,6.328834241399334
+020B,020B,6.514132145878575
+021A,021A,5.55420426487334
+021B,021B,7.603473625050753
+023A,Abeka lapaz to Nungua Station,18.573706244140745
+023B,Sakumono station to Abeka lapaz,19.72130058748391
+026A,Accra UTC Taxi Rank to Abeka Station near Market,6.78128826665623
+026B,Abeka Market station to Rawlings Park,6.989843846811641
+028A,Circle Near Las Palmas (PROTOA) to Abeka Station,4.15432370993089
+028B,Abeka Market station to Circle Near Las Palmas (PROTOA),4.084410745649267
+029A,Abeka Market station to Kaneshie Mkt Cmplx,3.9390156939416356
+029B,Kaneshie Mkt Cmplx to Abeka Market station,3.9390156939416356
+030A,Abeka Market station to Mallam Atta Station,3.8768280664091614
+030B,Mallam Atta Station to Abeka Main Markt,4.952239465290799
+031A,Abeka lapaz to 37 Station,7.723201871833482
+031B,031B,0.8766251954623591
+035A,Abeka lapaz to Agape Station,9.143628492070155
+035B,Agape Station to Abeka lapaz,9.143628492070155
+036A,Abeka lapaz to Agbogbloshie Station No. 2,6.894373929360804
+036B,Agbogbloshie Station No. 2 to Abeka lapaz,6.894373929360804
+038A,038A,12.166554735061455
+038B,Amasaman to Abeka lapaz,12.25129016000559
+039A,Nyamekye to Aunti Eku Pallas Town,3.057134501466414
+039B,Aunti Eku Pallas Town to Abeka lapaz,4.184603292437969
+040A,Abeka lapaz to Ashaiman Station,25.343252571344014
+040B,Ashiaman Station to Abeka lapaz,24.318201598425635
+041A,Abeka lapaz to Asofan Station,6.724319115781823
+041B,Asofan Station to Abeka lapaz,6.724319115781823
+043A,Abeka lapaz to Kaneshie Mkt Cmplx,4.865173922391012
+043B,Kaneshie Mkt Cmplx to Abeka lapaz,4.865173922391012
+044A,Abeka lapaz to Dome,6.039010738245258
+044B,Dome to Abeka lapaz,6.039010738245258
+046A,Kaneshie Mkt Cmplx to Abeka lapaz,4.865173922391012
+046B,Abeka lapaz to Kaneshie Mkt Cmplx,4.865173922391012
+048A,Abeka lapaz to Korle Bu Station,8.070290629847015
+048B,Korle Bu Station to Abeka lapaz,8.070290629847015
+050A,Abeka lapaz to Gbawe Station,7.719864819624949
+050B,Gbawe Station to Abeka lapaz,7.719864819624949
+051A,Lapaz Station-Mahean Afuaman to Mahean Station,4.350597772308667
+051B,Mahean Station to Abeka lapaz,12.152520889270368
+052A,Abeka lapaz to Mayera last stop,14.46430197179005
+052B,Mayera last stop to Abeka lapaz,14.46430197179005
+055A,Abeka lapaz to Osu Blow Up,9.184586077178402
+055B,Osu Blow Up to Abeka lapaz,9.184586077178402
+056A,Abeka lapaz to Race Course,2.725014680394073
+056B,Race Course to Abeka lapaz,2.725014680394073
+058A,Abeka lapaz to Sotuom VRA,6.2242862102719805
+058B,058B,5.693165465782154
+061A,Abelemkpe Station to Accra New Tema Station,6.784323234397421
+061B,Accra New Tema Station to Abelemkpe Station,6.784323234397421
+064A,Abossey Okai Camara Station to Kasoa Station,20.964409059952736
+064B,Kasoa Station to Abossey Okai Camara Station,20.964409059952736
+065A,Accra CMB to Darkuman Station,5.888828216566354
+065B,Darkuman Station to Orgle Road Station,1.8396072689703118
+066A,Accra Taxi Rank to Nima Overhead Station,3.748611857308079
+066B,Nima Overhead Station to Accra Taxi Rank,3.748611857308079
+067A,067A,9.980923190906864
+067B,Alhaji to Accra CMB,10.075618381427804
+070A,Accra End of Motorway to Adjiringanor,5.599198123069977
+070B,Accra End of Motorway to American House,3.6409803399734684
+071A,Accra End of Motorway to American House,3.6409803399734684
+071B,071B,3.6409803399734684
+072A,Accra New Town Station to Caprice,0.9293396955640641
+072B,Caprice to Accra Newtown,0.9280995225607683
+074A,074A,3.7145826342368182
+075A,Accra Zongo Lane to Dansoman Laststop,6.329410206914137
+075B,Agege to Accra Zongo Lane,6.1806997353852235
+076A,Achimota to 37 Station,6.252000468010591
+076B,37 Station to Achimota Station,6.211003050988255
+078A,078A,3.7012827671127075
+078B,Accra UTC to Achimota,8.067560653249949
+079A,Achimota to Tema Station,8.506545789888323
+079B,Accra New Tema Station to Achimota,8.502997527555738
+080A,Achimota Station to Accra UTC,8.021637992737746
+080B,Accra UTC to Achimota Station,8.021637992737746
+081A,Achimota Station to Adenta Station,11.30705522529889
+081B,Adenta Station to Achimota Station,11.30705522529889
+082A,Achimota Station to Station 082,11.179571410771569
+082B,Adjiringanor to Achimota Station,10.956773255928983
+084A,Achimota to Kuntunse - Satelite,17.33930391153419
+084B,A to Achimota,16.0193584096336
+085A,Achimota to Akweteman Zongo,1.4012805932256254
+085B,Akweteman Zongo to Achimota,1.4012805932256254
+088A,Achimota Station to Asofan Station,7.558623006679645
+088B,Asofan Station to Achimota Station,7.558623006679645
+090A,Achimota Station to Darkuman Station,4.639396417325807
+090B,Darkuman to Achimota Station,5.790206819039723
+092A,Achimota Station to Ashognman Estate,9.137050837320723
+092B,Ashognman Estate to Achimota Station,9.137050837320723
+093A,Achimota Station to Dome Pillar 2 Station,3.71232040227183
+093B,Dome Pillar 2 Station to Achimota Station,3.71232040227183
+094A,094A,2.314338583591038
+094B,Fise Junction to Achimota Station,11.330635626583883
+095A,Achimota Station to Israel Station,4.894703046409138
+095B,Israel Station to Achimota Station,4.894703046409138
+096A,Achimota Station to Kotobabi Down Station,3.325269676061291
+096B,Kotobabi Down Station to Achimota Station,3.325269676061291
+098A,Achimota Station to Abeka lapaz,2.7778015268556007
+098B,Abeka lapaz to Achimota Station,2.7778015268556007
+099A,Achimota to Legon Station,6.028853226580156
+099B,Legon Station to Achimota Station,6.033255301695573
+100A,Achimota Station to Legon Station,6.033255301695573
+100B,Legon Station to Achimota Station,6.033255301695573
+102A,Achimota Station to Madina Station,8.582258341070022
+102B,Madina Station to Achimota Station,8.582258341070022
+103A,Achimota to Mallam Attah Station,4.969867962471495
+103B,Mallam Attah Station to Achimota Station,4.923063056427896
+104A,Achimota to Adusa Quarters,13.640572201155075
+104B,Adusa Quarters to Achimota Station,13.687423533602978
+105A,Achimota to Kotoku Terminal,19.611037273162193
+105B,Kotoku Terminal to Achimota Station,19.65467212938622
+107A,Achimota to Ofankor,5.964343132053716
+107B,Ofankor to Achimota,5.964343132053716
+112A,Achimota to Ashaiman Station,22.638929725861836
+112B,Ashiaman Station to Achimota Old Station,22.138172964932032
+114A,Achimota to Taifa Station,5.068807592611928
+114B,Taifa Station to Achimota Station,5.1150417797709915
+116A,Achimota to Tema C'mty One,25.354328018286477
+116B,Tema C'mty One to Achimota Station,25.3384112427478
+117A,Achimota Station to Tema Main Station,25.318741937623155
+117B,Tema Main Station to Achimota Station,25.318741937623155
+118A,Achimota Station to Teshie Nungua,16.360330637541125
+118B,Nungua Station to Achimota Station,16.350455057965398
+120A,Achimota to Ashongman,9.326858356217528
+120B,Ashongman to Achimota,9.326858356217528
+121A,Achimota to Haatso,5.647139102283391
+121B,Haatso to Achimota,5.647139102283391
+122A,Achimota to Sowutuom Station,6.294101211741595
+122B,Sowutuom Station to Achimota Station,6.316648356091488
+123A,Achimota Station to Dome,4.63632424149937
+123B,B to Achimota Station,4.288392995685932
+139A,Agbogbloshie Station to Chemuna Station,4.527006783383807
+139B,Chorkor Station to Agbobloshie Station,4.566075994132442
+140A,Agbogbloshie Station No. 2 to Kasoa Station,22.62995466208527
+143A,Agbogbloshie Station to Mamprobi,3.372641419225499
+143B,Mamprobi to Agbogbloshie Station,3.372641419225499
+144A,Agbogbloshie Station No. 2 to Mamprobi Camara,4.250313302672309
+144B,Mamprobi Camara to Agbogbloshie Station,4.453807419317294
+146A,Agbogbloshie Station to Russia,4.062933165430943
+146B,Russia to Agbogbloshie Station No. 2,3.7382645931442275
+147A,Agbogbloshie Station to Tema Newtown Terminal,29.02828972095945
+149A,Agbogbloshie Station to Camara Station,4.464553269390476
+149B,Camara Station to Agbogbloshie Station,4.464553269390476
+155A,Kanashie Mkt Cmplx to Akoto Lante,3.7683861197038597
+155B,Akoto Lante to Kaneshie Mkt Cmplx,3.8299704787795137
+156A,Alajo Taxi Rank to Accra CMB,4.9797635070705795
+156B,Accra CMB to Alajo Taxi Rank,4.9797635070705795
+157A,Alajo Taxi Rank to Circle,2.9355149224548094
+157B,Circle Lido to Alajo Taxi Rank,2.7632272169220173
+159A,Alajo Junction to Kotobabi Police Station,1.4192578270416067
+159B,Kotobabi Police Station to Alajo Junction,1.4192578270416067
+163A,Apapa Station to Accra New Tema Station,4.685506461586638
+163B,Accra New Tema Station to Apapa Station,4.685506461586638
+164A,Arena Station to Kanashie Mkt Cmplx,3.0406718969952737
+164B,Kaneshie Mkt Cmplx to Arena Station,3.1089101112032744
+165A,Arena Station to Ordorkor,6.560493905980098
+165B,Odorkor Station to Arena Station,6.605905353456409
+166A,Arena Station to Russia,4.277938005653236
+166B,Russia to Arena Station,4.277938005653236
+167A,Atico to Kaneshie Mkt Cmplx,1.7818973142911112
+167B,Kaneshie Mkt Cmplx to Atico,1.7818973142911112
+170A,Banana Inn Station to Accra Post Office,5.2034055393100935
+170B,Accra Post Office to Banana Inn Laststop,3.5915917365810763
+172A,Banana Inn Station to Accra New Tema Station,6.075246508000088
+172B,Tema Station to Banana Inn,6.1439124436224715
+173A,Bishop Station to Cantonments Station,5.387900528940517
+173B,Cantonments Station to Bishop Station,5.387900528940517
+174A,Bubiashie Ayigbe Town to Circle Odorna Station,3.136275482282281
+174B,Bubiashie Atico Station to Ayigbe Town,2.915356143906898
+175A,Bubiashie Station to Circle Odorna Station,2.8218348633831383
+175B,Bubiashie Atico Station to Bubiashie Station,2.705580898752634
+176A,Bubiashie Atico to Circle Odorna Station,3.543130671725317
+176B,Bubiashie Atico Station to Bubiashie Atico,3.425184594488628
+177A,Bubiashie Ayigbe Town to Accra CMB,4.79594922697423
+177B,Accra CMB to Bubiashie Ayigbe Town,4.79594922697423
+178A,Bubiashie Control to Kaneshie Mkt Cmplx,1.4892343312214495
+178B,Kaneshie Mkt Cmplx to Bubiashie Control,1.4892343312214495
+185A,Chorkor Station to Agbobloshie Station,4.566075994132442
+185B,Agbobloshie Station to Chorkor Station,4.566075994132442
+186A,Circle Opps. Vodafone to Abelemkpe Station,3.8613515978169524
+186B,Abelemkpe Station to Circle,4.247015592196515
+188A,Circle Odorna Station to Asore Danho,4.3579229237590695
+188B,Asore Danho to Circle,4.423862470941006
+192A,Circle Odorna Station to Fadama Last Stop,4.710105142346296
+192B,Fadama Last Stop to Circle,4.778657684135001
+193A,Circle Odorna Station to Immesco,2.7850668400189833
+193B,Immesco to Circle,2.847520998336607
+196A,Circle Lido to Kotobabi Down Station,2.8028032400713063
+196B,Kotobabi Down Station to Circle,3.0478179774986494
+200A,Circle Odorna Station to New Melcom,1.783104459520281
+200B,New Melcom to Circle,1.834286653470221
+201A,Circle Opps. Vodafone to New Town Timber Market,1.449436224215217
+201B,New Town Timber Market to Circle Opps. Vodafone,1.449436224215217
+202A,UTC Station to Novotel,1.7624762310885003
+202B,Novotel to Circle,1.8153708282183876
+203(1)A,Circle Odorna Station to Orgle Road Station,2.6586279921630322
+203(1)B,Orgle Road Station to Circle,2.7285841386074168
+203(2)A,Circle Odorna Station to Orgle Road Station,2.6586279921630322
+203(2)B,Orgle Road Station to Circle,2.7285841386074168
+204A,UTC Station to Osu Blow Up,3.903014016557774
+204B,Osu Blow Up to Circle,3.926506121387196
+205A,UTC Station to Osu RE,3.8638667826700814
+205B,Osu RE to Circle,3.874401246956974
+206A,UTC Station to Osu RE,3.8638667826700814
+206B,Osu RE to Circle,3.874401246956974
+207A,Circle Coporative Station to Ridge Hospital,1.7567296193751898
+207B,Ridge Hospital to Circle Coporative Station,1.7567296193751898
+208A,UTC Station to Osu Blow Up,3.903014016557774
+208B,Osu Blow Up to UTC Station,3.903014016557774
+209A,Circle Odorna Station to Swanlake Laststop,2.524687656725392
+209B,Swanlake Laststop to Circle,2.5945091717158486
+210A,Circle Near Las Palmas (PROTOA) to Teachers Hall,1.7554685198204358
+210B,Teachers Hall to Circle,1.550495704022367
+211A,Circle Overhead Station to Tema Main Station,25.71793301875948
+211B,Tema C'mty One to Circle,25.52101380963075
+212A,Circle Coporative Station to Accra New Tema Station,2.6851876375698756
+212B,Tema Station to Circle,2.819197770549486
+214A,Circle Coporative Station to WAEC,1.760230392208073
+214B,WAEC to Circle Coporative Station,1.760230392208073
+216A,Circle Lido to Abeka lapaz,5.480579087749616
+216B,Abeka lapaz to Circle,5.4604432231595
+219A,Circle Lido to Abeka lapaz,5.480579087749616
+219B,Abeka lapaz to Circle,5.4604432231595
+221A,Circle Overhead (Maame Dokono) to Madina Station,12.699543859559283
+221B,Madina Station to Circle Overhead (Maame Dokono),12.699543859559283
+222A,Lido Terminal (Circle Overhead) to Maamobi-Nima Terminal,3.228015684981563
+222B,Maamobi-Nima Terminal to Lido Terminal (Circle Overhead),3.228015684981563
+223A,Accra CMB to Ablekuma,15.237991167072435
+223B,Ablekuma to Accra CMB,15.237991167072435
+224A,Accra CMB to Alajo Taxi Rank,4.9797635070705795
+224B,Alajo Taxi Rank to Accra CMB,4.9797635070705795
+225A,Accra CMB to Fan Milk,12.77118954007357
+225B,Fan Milk to Accra CMB,12.77118954007357
+226A,Circle Odor Rise to Pig Farm Station,3.352002621742085
+226B,Pig Farm Station to Kokomlemle,3.27774012415786
+227A,Accra CMB to Manhean Station,17.847085205338036
+227B,Manhean Station to Accra CMB,17.847085205338036
+228A,Accra CMB to Odorkor Station,6.521343994315491
+228B,Odorkor Station to Accra CMB,6.521343994315491
+230A,Accra CMB to Omanjor Station,13.338111873129597
+230B,Omanjor Station to Accra CMB,13.338111873129597
+231A,Accra CMB to Weija Station,13.961210402939633
+231B,Weija Station to Accra CMB,13.961210402939633
+232A,Accra CMB to Madina Station,14.65588160059652
+232B,Madina Station to Accra CMB 2,14.552674486888526
+235A,Dansoman Laststop to Achimota Station,10.986777574848052
+235B,Achimota to Dansoman Laststop,11.017495816462924
+236A,Agege to Arena Station,5.567251370660237
+236B,Arena Station to Last Stop (SSNIT Market),6.373694386894211
+237A,Dansoman Laststop to Anyaa Market Station,8.096292827241836
+237B,Anyah Station to Dansoman Laststop,8.174113212991825
+238A,Dansoman Laststop to Circle Odorna Station,6.956789528114208
+238B,Circle to Dansoman Laststop,6.989280037637873
+239A,Dansoman Laststop to Mallam Station,5.697773344880431
+239B,Mallam Station to Dansoman Laststop,5.697773344880431
+240A,240A,8.098810968660596
+240B,Nyamekye to Dansoman Laststop,8.009408771916773
+241A,Circle Overhead Station to Baweleshi,9.788031283418132
+241B,Bawalashie to Circle,9.769841723998352
+242A,Dansoman Laststop to Odorkor Station,5.664975234320678
+242B,Odorkor Station to Dansoman Laststop,5.664975234320678
+243A,Dansoman Laststop to Santa Maria,8.439460181964499
+243B,Santa Maria to Dansoman Laststop,8.439460181964499
+244A,Agege to New Tema Station,7.1922465886898435
+244B,New Tema Station to Dansoman Laststop,7.338748951306557
+246A,Dansoman Laststop to Mallam Junction,5.081861305507864
+246B,Mallam Station to Dansoman Laststop,5.697773344880431
+247A,Darkuman Station to Agbogbloshie Station No. 2,5.326145789461324
+247B,Agbogbloshie Station No. 2 to Darkuman Station,5.326145789461324
+248A,Darkuman Station to Accra CMB,5.888828216566354
+248B,Accra CMB to Darkuman Station,5.888828216566354
+249A,Darkuman Station to Kaneshie Mkt Cmplx,3.052221383571925
+249B,Kaneshie Mkt Cmplx to Darkuman,2.481226695864192
+251A,Darkuman Station to Accra Post Office,6.950381228160729
+251B,Accra Post Office to Darkuman Station,6.950381228160729
+254A,Dzorwulu Station to Kokomlemle,5.353639335919648
+254B,Circle Odor Rise to Dzorwulu Station,5.425451089365427
+255A,East Legon to Circle Odorna Station,11.374143294581247
+255B,Circle Odorna Station to East Legon,11.374143294581247
+256A,Adjiringanor Station to Accra New Tema Station,16.61305419863206
+256B,Accra New Tema Station to Adjiringanor Station,16.61305419863206
+260A,Ebenezer to Accra Bishop,7.3931517665054045
+260B,Accra Bishop to Ebenezer,7.3931517665054045
+262A,Glefe to Accra Bishop,8.011375251992131
+262B,Accra Bishop to Glefe,8.011375251992131
+263A,Darkuman to Haasto,11.427208253418131
+263B,Haatso to Darkuman,11.432027816652347
+264A,Hansonic to Dansoman Laststop,5.1238858578089195
+264B,Dansoman Laststop to Hansonic,5.1238858578089195
+265A,Kaneshie Mkt Cmplx to Sukura Station,2.251121129864916
+265B,Sukura Station to Kaneshie Mkt Cmplx,2.251121129864916
+266A,Kaneshie Mkt Cmplx to Afropa,3.071121660893332
+266B,Afropa to Kaneshie Mkt Cmplx,3.071121660893332
+267A,Kaneshie Mkt Cmplx to Soko Station,2.845545726868066
+267B,Soko Station to Kaneshie Mkt Cmplx,2.845545726868066
+269A,Kaneshie Mkt Cmplx to Bubiashie Station,1.7502489981985612
+269B,Bubiashie Station to Kaneshie Mkt Cmplx,1.7502489981985612
+270A,Kaneshie Mkt Cmplx to Camara Station,3.8281743949184697
+270B,Camara Station to Kaneshie Mkt Cmplx,3.8281743949184697
+271A,Kaneshie Mamprobi Station to Chorkor Station,4.525528514260041
+271B,Chorkor Station to Kaneshie Mamprobi Station,4.523072420059573
+273A,Kaneshie Mamprobi Station to Korle bu Station,3.3712001839432126
+273B,Korle Bu Station to Kaneshie Mamprobi Station,3.1279314846621125
+274A,Kaneshie Mkt Cmplx to Maamobi-Nima Terminal,5.510674506179793
+274B,Maamobi-Nima Terminal to Kaneshie Mkt Cmplx,5.510674506179793
+275A,Kaneshie Mkt Cmplx to Adenta Station,17.23723099210171
+275B,Adenta Station to Kaneshie Mkt Cmplx,17.23723099210171
+276A,Kaneshie Mamprobi Station to Mamponse Station,5.3713056623508235
+276B,Mamponse Station to Kaneshie Mkt Cmplx,5.4508518047335714
+277A,277A,4.0166512417113776
+277B,C to Kaneshie Mamprobi Station,4.026419937043629
+278A,Kanashie Mkt Cmplx to New Town Station,3.739809080382578
+278B,New Town Station to Bus Stop 278,3.371956519181533
+281A,Kaneshie Mkt Cmplx to Russia,2.2833820441258057
+281B,Russia to Kaneshie Mkt Cmplx,2.2833820441258057
+282A,Kaneshie Mamprobi Station to Shalom Station,3.924199970363111
+282B,Shalom Station to Kaneshie Mkt Cmplx,4.009495385179989
+283A,Kaneshie Mkt Cmplx to Makola Tudu,3.754684390198583
+283B,Makola Tudu to Kaneshie Mkt Cmplx,3.754684390198583
+284A,Kaneshie Mkt Cmplx to Agyapaye Station,3.499938856643425
+286A,Kaneshie Mkt Cmplx to New Fadama,4.040712407019431
+286B,New Fadama to Kaneshie Mkt Cmplx,4.040712407019431
+287A,Kaneshie Mkt Cmplx to Old Melcom 2,2.674098083704287
+287B,North Industrial Area to Kaneshie Mkt Cmplx,2.530703551549903
+288A,Kaneshie Mkt Cmplx to Swanlake Laststop,2.119680667313268
+288B,Swanlake Laststop to Kaneshie Mkt Cmplx,2.119680667313268
+290A,Kaneshie Mkt Cmplx to Dansoman Laststop,5.064203973981174
+290B,Dansoman Laststop to Kaneshie Mkt Cmplx,5.064203973981174
+291A,Kaneshie Mkt Cmplx to Korle Bu Station,3.211039442758065
+291B,Korle Bu Station to Kaneshie Mkt Cmplx,3.211039442758065
+293A,Kaneshie Mkt Cmplx to Mamprobi C. Lante,4.433359670872218
+293B,Mamprobi C. Lante to Kaneshie Mkt Cmplx,4.433359670872218
+295A,Kaneshie Mkt Cmplx to New Russia,2.4420847416061666
+295B,New Russia to Kaneshie Mkt Cmplx,2.4420847416061666
+296A,Kaneshie Mkt Cmplx to Russia,2.2833820441258057
+296B,Russia to Kaneshie Mkt Cmplx,2.2833820441258057
+298A,Dzorwulu Station to Kokomlemle,5.353639335919648
+298B,Kokomlemle to Dzorwulu Station,5.353639335919648
+299A,Korle Bu Station to Abeka lapaz,8.070290629847015
+299B,Abeka lapaz to Korle Bu Station,8.070290629847015
+300A,Korle Bu Station to Abeka lapaz,8.070290629847015
+300B,Abeka lapaz to Korle Bu Station,8.070290629847015
+301A,Korle Bu Station to Kasoa Station,21.343869502490715
+302A,Korle Bu Station to Kwashieman Station,7.4426238073056314
+302B,Kwashieman Station to Korle Bu Station,7.4426238073056314
+303A,Korle Bu Station to Mallam Station,7.79924153431214
+303B,Mallam Station to Korle Bu Station,7.79924153431214
+305A,305A,4.452616369061513
+305B,305B,4.453463951957918
+306A,Korle Bu Station to Darkuman Station,6.1252496305487005
+307A,Kotobabi Down Station to 37 Station,3.346084025645753
+307B,37 Station to Kotobabi Down Station,3.346084025645753
+308A,Kotobabi Down Station to Accra CMB,5.0025054060891625
+308B,Accra CMB to Kotobabi Down Station,5.0025054060891625
+309A,Kotobabi Down Station to Circle Lido,2.8028032400713063
+309B,Circle Lido to Kotobabi Down Station,2.8028032400713063
+310A,Kotobabi Down Station to Abeka lapaz,4.380610110148384
+310B,Abeka lapaz to Kotobabi Down Station,4.380610110148384
+311A,Kotobabi Down Station to Accra New Tema Station,5.321324245727026
+311B,Accra New Tema Station to Kotobabi Down Station,5.321324245727026
+313A,Kwashieman Station to A-Lang Station,1.2570724169677563
+313B,A-Lang Station to Kwashieman Station,1.2570724169677563
+314A,Kwashieman Station to Achimota Station,5.65714347407915
+314B,Achimota to Kwashieman Station,5.664033393886183
+317A,Kwashieman Station to Abeka lapaz,2.881663070465337
+317B,Abeka lapaz to Kwashieman Station,2.881663070465337
+318A,Kwashieman Station to Madina Station,14.164079709251798
+321A,Kwashieman Station to Tema Habour,30.476503826114776
+321B,321B,28.19167264808649
+322A,Kwashieman Station to Accra CMB,7.629423050829961
+322B,Accra CMB to Kwashieman Station,7.629423050829961
+324A,Kwashieman Station to Auntie Aku station,2.846866589811767
+324B,Auntie Aku station to Kwashieman Station,2.846866589811767
+325A,Kwashieman Station to Santa Maria,1.67084951492799
+325B,Santa Maria to Kwashieman Station,1.67084951492799
+326A,Kwashieman Station to Sowutuom Station,3.8582847463608063
+326B,Sowutuom Station to Kwashieman Station,3.8582847463608063
+328A,Kwashieman Station to Rawlings Park,8.478714044289738
+328B,Rawlings Park to Kwashieman Station,8.478714044289738
+331A,Abeka lapaz to Accra Novotel,7.557701511512402
+331B,Accra New Tema Station to Abeka lapaz,8.238421613806596
+333A,Abeka lapaz to Adenta Station,13.906594246405554
+333B,Adenta Station to Abeka lapaz,13.906594246405554
+334A,Abeka lapaz to Agbogba,10.80951721325786
+334B,Agbogba to Abeka lapaz,10.80951721325786
+336A,Abeka lapaz to Alhaji,2.779469095222533
+336B,Alhaji to Abeka lapaz,2.779469095222533
+337A,Abeka lapaz to Ashaiman Overhead,25.916275643682166
+337B,Ashaiman Station to Abeka lapaz,25.343252571344014
+338A,Abeka lapaz to Lomnava Station,4.709990882464334
+339A,Abeka lapaz to Madina Station,11.300013086182943
+339B,Madina Station to Abeka lapaz,11.300013086182943
+342A,Abeka lapaz to Omanjor Station,6.408269185507127
+342B,Omanjor Station to Abeka lapaz,6.408269185507127
+343A,Abeka lapaz to Race Course,2.725014680394073
+343B,Race Course to Abeka lapaz,2.725014680394073
+344A,Abeka lapaz to Santa Maria,3.194418426775197
+344B,Santa Maria to Abeka lapaz,3.194418426775197
+345A,Kotobabi Down Station to Achimota Station,3.325269676061291
+345B,Achimota to Kotobabi Down Station,3.3718021636373514
+347A,Abeka lapaz to Tema Main Station,27.838560707286817
+347B,Tema Main Station to Abeka lapaz,27.838560707286817
+348A,Abeka lapaz to Tetteh Quarshie,8.277912467227551
+348B,Tetteh Quarshie to Abeka lapaz,8.277912467227551
+349A,Abeka lapaz to Yellow House,4.205519352051545
+349B,Yellow House to Abeka lapaz,4.205519352051545
+351A,Legon Station to Dome Station,6.771169052489026
+351B,Dome Station to Legon Station,6.771169052489026
+353A,Legon Station to Social Welfare,3.3499281053835626
+353B,353B,1.5732766953162163
+356A,Mallam Attah Station to Achimota Station,4.923063056427896
+356B,Achimota Station to Mallam Atta Station,4.7034205639217825
+357A,Mallam Atta Station to Kotobabi Down Station,1.5454859819931077
+357B,Kotobabi Down Station to Mallam Atta Station,1.5454859819931077
+363A,Mataheko New Russia Station to Kaneshie Mkt Cmplx,2.5186275294077967
+363B,Kaneshie Mkt Cmplx to Mataheko New Russia Station,2.5186275294077967
+366B,Agbogbloshie Station No. 2 to New Fadama,6.156015974195932
+367A,New Fadama to Accra CMB,6.616736366000601
+367B,Accra CMB to New Fadama,6.616736366000601
+368A,Accra New Tema Station to Abelemkpe Station,6.784323234397421
+368B,Abelemkpe Station to Accra New Tema Station,6.784323234397421
+369A,Accra New Tema Station to Agbogbloshie Station,1.7122985919556473
+369B,Agbogbloshie Station to Accra New Tema Station,1.7122985919556473
+373A,Accra New Tema Station to Dzorwulu Station,7.671536295360728
+373B,Dzorwulu Station to Accra New Tema Station,7.671536295360728
+376A,Accra New Tema Station to Pig Farm Station,5.5046170451269765
+376B,Pig Farm Station to Accra New Tema Station,5.5046170451269765
+377A,F to Ashongman,6.813490307072894
+377B,Ashongman to Abeka lapaz,11.436980957754997
+378A,Abeka lapaz to Last stop,5.051443488505936
+378B,Awoshie Station to Abeka lapaz,4.906925371302166
+380A,Abeka lapaz to 5 Haatso station,8.119152959416358
+380B,Haatso to Abeka lapaz,8.145382518374573
+381A,H to Israel Station,3.445380429934506
+381B,381B,3.5764431142711772
+383A,Accra New Tema Station to Ashaiman Station,24.237874221172092
+383B,Ashaiman Station to Accra New Tema Station,24.237874221172092
+384A,Accra New Tema Station to Tema Main Station,24.942170273268914
+384B,Tema Main Station to Accra New Tema Station,24.942170273268914
+385A,New Town Station to 37 Station,3.1457502575374923
+385B,37 Station to New Town Station,3.1457502575374923
+386A,New Town Station to Adenta Station,13.971515838240398
+386B,Adenta Station to New Town Station,13.971515838240398
+387A,New Town Station to Ashaley Botwe,12.465636617653088
+387B,Ashaley Botwe to New Town Station,12.465636617653088
+388A,New Town Station to Kasoa Station,24.52628544456444
+388B,Kasoa Station to New Town Station,24.52628544456444
+389A,New Town Station to Madina Station,10.876517789035725
+389B,Madina Station to New Town Station,10.876517789035725
+391A,New Town Station to Nima Overhead Station,1.1345933826168486
+391B,Nima Overhead Station to Accra New Town Station,1.129163236770371
+393A,Nima Overhead Station to Accra New Tema Station,3.657454981966851
+393B,Accra New Tema Station to Nima Overhead Station,3.657454981966851
+394A,Nima Overhead Station to Ashaiman Station,21.811481931121158
+394B,Ashaiman Station to Nima Overhead Station,21.811481931121158
+395A,Nima Overhead Station to Circle,2.3405926037416664
+395B,Circle Lido to Nima Overhead Station,2.017938778889049
+397A,Nima Overhead Station to Madina Station,10.966923871543113
+397B,Madina Station to Nima Overhead Station,10.966923871543113
+398A,Nima Overhead Station to Ashaiman Station,21.811481931121158
+398B,Ashaiman Station to Nima Overhead Station,21.811481931121158
+399A,Nima Overhead Station to Achimota Station,5.323398288677946
+399B,Achimota Station to Nima Overhead Station,5.323398288677946
+400A,Nima Overhead Station to Alajo Station,2.6845860964132053
+400B,Alajo Station to Nima Overhead Station,2.6845860964132053
+401A,Nima Overhead Station to Israel Station,9.547017210985182
+401B,Israel Station to Nima Overhead Station,9.547017210985182
+402A,Nima Overhead Station to Awoshie Station,10.277575222299054
+402B,Awoshie Station to Nima Overhead Station,10.277575222299054
+403A,Nima Overhead Station to Accra CMB,3.7315206146257442
+403B,Accra CMB to Nima Overhead Station,3.7315206146257442
+404A,Nima Overhead Station to Dome Railway Crossing,8.411544501914186
+404B,Dome Railway Crossing to Nima Overhead Station,8.411544501914186
+405A,Nima Overhead Station to Abeka lapaz,6.0975538092725685
+405B,Abeka lapaz to Nima Overhead Station,6.0975538092725685
+406A,Nima Overhead Station to Mallam Station,10.111444635792353
+406B,Mallam Station to Nima Overhead Station,10.111444635792353
+408A,Nima Overhead Station to Amasaman,17.62748439683001
+409A,Nima Overhead Station to Sowutuom Station,10.452866287451739
+409B,Sowutuom Station to Nima Overhead Station,10.452866287451739
+410A,Nima Overhead Station to Sukura Station,6.653807451976117
+410B,Sukura Station to Nima Overhead Station,6.653807451976117
+412A,Nima Overhead Station to Agbobloshie Station No. 2,4.033703808574908
+412B,Agbobloshie Station to Nima Overhead Station,4.025722368972967
+414A,Nima Overhead Station to Madina Station,10.966923871543113
+414B,Madina Station to Nima Overhead Station,10.966923871543113
+415A,Nima Overhead Station to Nyaho,4.65150076291632
+415B,Nyaho to Nima Overhead Station,4.65150076291632
+416A,New Tema Station to Cantonments Station,4.71386798417133
+416B,416B,4.049325316767678
+417A,Nima Overhead Station to Accra New Tema Station,3.657454981966851
+417B,Accra New Tema Station to Nima Overhead Station,3.657454981966851
+419A,Odorna Station to Agblezah Station,11.62745382936781
+419B,Agblezah Station to Circle,11.390936435644642
+420A,420A,3.9207456797824753
+420B,420B,4.201125730861375
+421A,Circle Near Las Palmas (PROTOA) to Ashiaman Station,23.349272889600407
+421B,Ashiaman Station to Circle Odorna Station,23.146920486193224
+422A,Circle to Adenta Station,15.942803376936363
+422B,D to Circle Odorna Station,16.199245571065205
+423A,Odorna Station to Nima Overhead Station,2.5952645917088613
+423B,Nima Overhead Station to Odorna Station,2.5952645917088613
+424A,Odorna Station to Nungua Station,15.74587587657579
+424B,Nungua Station to Odorna Station,15.74587587657579
+425A,Circle to Nungua Station,15.55291992791689
+425B,Nungua Station to Circle Odorna Station,15.609933648329282
+428A,Circle to Tsui Bleeo,11.793914208415517
+428B,Tsui Bleeo to Circle Odorna Station,11.84546635426372
+431A,Circle Odorna Station to Korle Bu Station,3.991755140751859
+431B,Korle Bu Station to Circle Odorna Station,3.991755140751859
+434A,Odorkor Station to Anyah Station,3.596886061960231
+434B,Anyah Station to Odorkor Station,3.596886061960231
+435A,435A,4.583456184393846
+435B,Kasoa Station to Odorkor Station,18.434206391324807
+436A,Odorkor Station to Official Town,1.679482080741615
+436B,Official Town to Odorkor Station,1.679482080741615
+437A,Odorkor Station to Sakaman,1.3106548186336247
+437B,Sakaman to Odorkor Station,1.3106548186336247
+438A,Odorkor Station to Accra New Tema Station,7.751666762021596
+438B,Accra New Tema Station to Odorkor Station,7.751666762021596
+441A,Okponglo Taxi Station to American House,2.9733842174099983
+441B,American House to Okponglo Taxi Station,2.9733842174099983
+442A,Okponglo Taxi Station to Bawalashie,1.120205003108388
+442B,Bawalashie to Okponglo Taxi Station,1.120205003108388
+443A,Okponglo Taxi Station to Christian,2.8669660782447424
+443B,Christian to Okponglo Taxi Station,2.8669660782447424
+444A,Opetekwei Station to Agbogbloshie Station,6.7254322024559094
+444B,Agbogbloshie Station No. 2 to Opetekwei Station,6.530579493230966
+445A,Opetekwei Station to Circle,7.9074060751983914
+445B,Circle Odorna Station to Opetekwei Station,7.871873982287615
+446A,Opetekwei Station to Kaneshie Mkt Cmplx,5.905914877879775
+446B,Kaneshie Mkt Cmplx to Opetekwei Station,5.905914877879775
+447A,Opetekwei Station to Accra New Tema Station,8.308030055975788
+447B,Accra New Tema Station to Opetekwei Station,8.308030055975788
+449A,449A,1.9274220925976573
+449B,449B,0.4946940519783997
+452A,Orgle Road Station to Kaneshie Mkt Cmplx,2.1811716307049034
+452B,Kaneshie Mkt Cmplx to Orgle Road Station,2.1811716307049034
+454A,Osu Blow Up to Circle Odorna Station,3.9987114721198753
+454B,Circle to Osu Blow Up,3.926506121387196
+455A,Osu Blow Up to Kaneshie Mkt Cmplx,5.8697950059023505
+455B,Kaneshie Mkt Cmplx to Osu Blow Up,5.8697950059023505
+456A,Osu Blow Up to Madina Station,13.737328060974622
+456B,Madina Station to Osu Blow Up,13.737328060974622
+458A,Pig Farm Station to Accra CMB,5.464734499550685
+458B,Accra CMB to Pig Farm Station,5.464734499550685
+463A,Accra Post Office to Mamprobi,3.898695511476501
+463B,Mamprobi to Accra Post Office,3.898695511476501
+467A,Rawlings Park to Blue Lagoon,7.7070136969246965
+467B,Blue Lagoon to Rawlings Park,7.7070136969246965
+468A,Rawlings Park to La Olympia Station,5.7159150468539215
+468B,La Olympia Station to Rawlings Park,5.7159150468539215
+469A,Rawlings Park to Nungua Station,15.526183557559417
+469B,Nungua Station to Rawlings Park,15.526183557559417
+470A,Rawlings Park to Osu Penta,3.606527426729235
+470B,Osu Penta to Rawlings Park,3.606527426729235
+472A,Salaga Station to Alhaji Station,4.285558867384979
+472B,Alhaji Station to Salaga Station,4.285558867384979
+473A,Salaga Station to Chemuna Station,4.759076505236621
+473B,Chemuna Station to Salaga Station,4.759076505236621
+474A,Salaga Station to Appiah Danquah,4.1187516319862025
+474B,Appiah Danquah to Salaga Station,4.1187516319862025
+476A,Salaga Station to Camara Station,5.033730452680986
+476B,Camara Station to Salaga Station,5.033730452680986
+480A,Shiabu to Agbogbloshie Station No. 2,5.026528570670486
+480B,Agbogbloshie Station No. 2 to Shiabu,5.026528570670486
+485A,Soko Station to Accra Post Office,4.759278077052222
+485B,Accra Post Office to Soko Station,4.759278077052222
+486A,486A,4.467092142434378
+486B,486B,4.759278077052222
+488A,Sukura Station to Arena Station,3.8144482520588907
+488B,Arena Station to Zamrara Line,4.608988557112826
+490A,Sukura Station to Nima Overhead Station,6.653807451976117
+490B,Nima Overhead Station to Zamrara Line,7.413502220590089
+492A,Kaneshie Mkt Cmplx to Tabora Alhaji Station,7.28791405958901
+492B,Tabora Alhaji Station to Kaneshie Mkt Cmplx,7.28791405958901
+520A,Accra New Tema Station to Camara Station,6.0798372735325374
+520B,Camara Station to Accra New Tema Station,6.0798372735325374
+521A,Accra New Tema Station to Chemuna Station,5.957762294287235
+521B,Chemuna Station to Accra New Tema Station,5.957762294287235
+522A,Accra New Tema Station to Sukura Station,5.353657833289946
+522B,Sukura Station to Accra New Tema Station,5.353657833289946
+523A,Accra New Tema Station to Trade Fair,6.357475976791167
+523B,Trade Fair to Accra New Tema Station,6.357475976791167
+524A,Accra New Tema Station to Banana Inn Taxi Station,6.379006485606336
+524B,Banana Inn Station to Accra New Tema Station,6.075246508000088
+535A,Zamrara Line to Agbogbloshie Station No. 2,4.158222902079274
+535B,Agbogbloshie Station No. 2 to Zamrara Line,4.158222902079274
+536A,Zamrara Line to Arena Station,4.608988557112826
+536B,Arena Station to Zamrara Line,4.608988557112826
+538A,Zamrara Line to Kaneshie Mkt Cmplx,2.9380980298751376
+538B,Kaneshie Mkt Cmplx to Zamrara Line,2.9380980298751376
+539A,Zamrara Line to Circle Odorna Station,5.0480381864625885
+539B,Circle Odorna Station to Zamrara Line,5.0480381864625885
+540A,Zongo Junction to Agege,3.922901949883458
+540B,Agege to Zongo Junction,3.922901949883458
+542A,Zongo Junction to Chorkor Station,3.492379925519356
+542B,Chorkor Station to Zongo Junction,3.492379925519356
+543A,Zongo Junction to Kasoa Station,20.445673599013553
+543B,543B,18.782891407721912
+544A,Zongo Junction to Korle Bu Station,2.3752760332671503
+544B,Korle Bu Station to Zongo Junction,2.3752760332671503
+990A,Circle to SSNIT Flat Station,6.378874540582953
+994A,Rawlings Park to Chemuna Station,5.231174029786278
+994B,Chemuna Station to Rawlings Park,5.231174029786278
+995A,Accra New Tema Station to Zamrara Line,6.164381422814353
+995B,Zamrara Line to Accra New Tema Station,6.164381422814353
+996A,996A,3.2425896605935254
+996B,Odorna Station to Maamobi-Nima Terminal,3.80145159943485
+997A,Circle Odorna Station to Orgle Road Station,2.6586279921630322
+997B,Circle Opps. Vodafone to UTC Station,0.46626011674966117
+998A,Circle Overhead (Maame Dokono) to Ashaiman Station,23.88265150917078
+998B,Ashaiman Station to Circle Overhead Station,24.319992585529214
+999A,Abeka lapaz to Sowutuom Station,4.360529198582999
+999B,Sowutuom Station to Abeka lapaz,4.360529198582999

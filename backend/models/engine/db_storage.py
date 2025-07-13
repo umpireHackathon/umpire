@@ -19,6 +19,8 @@ class DBStorage:
         db = getenv("UMPIRE_DB")
         host = getenv("UMPIRE_DB_HOST")
         env = getenv("UMPIRE_ENV")
+        print("============DBStorage initialized with user: {}, db: {}, host: {}, env: {}, passwd: {}"
+              .format(user, db, host, env, passwd))
         # initializes the db storage
         self.__engine = create_engine('postgresql+psycopg2://{}:{}@{}/{}'
                                        .format(user, passwd, host, db),
@@ -33,6 +35,7 @@ class DBStorage:
         """
         session = self.__session
         dic = {}
+        
         if not cls:
             tables = [Suburb, BusStop]
         else:

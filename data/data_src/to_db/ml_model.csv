@@ -1,0 +1,4 @@
+name,version,task,url,inference_endpoint,description,target,features
+route_demand_prediction,1.0,regression,http://example.com/route_demand_prediction,http://example.com/trotro_capacity_prediction/infer,Predicts the capacity of trotros based on various features.,route_demand,"vehicle_number, latitude, longitude"
+travel_time_prediction,1.0,regression,http://example.com/travel_time_prediction,http://example.com/travel_time_prediction/infer,Predicts the travel time between two bus stops based on historical data.,travel_time,"start_stop_id, end_stop_id, time_of_day, day_of_week, weather_conditions"
+bus_stops_prediction,1.0,classification,http://example.com/bus_stops_prediction,http://example.com/bus_stops_prediction/infer,Classifies bus stops based on their usage patterns and features.,stop_type,"stop_id, stop_name, latitude, longitude, usage_count, suburb_id"

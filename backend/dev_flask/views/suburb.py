@@ -10,11 +10,14 @@ from werkzeug.exceptions import NotFound, MethodNotAllowed, BadRequest
 from .commons import (manipulate, fetch_data, fetch_data_id, fetch_process,
                       reach_endpoint, allows, err_msg)
 
-
 def get_suburb(suburb_id=None):
     """Returns the suburb using the given id.
     """
     sub_all = fetch_data(Suburb)
+    if not sub_all:
+        return jsonify(
+            {"error": "No suburbs found"}), 404
+    
     if suburb_id:
         results = [v.to_dict() for v in sub_all if v.id == suburb_id]
     else:
@@ -27,11 +30,29 @@ def add_suburb(suburb_id=None):
     """
     
     req_d = request.get_json()
+    print("=============", type(req_d), "================")
+
+    if len(req_d) == 0:
+        raise BadRequest(description='Not a JSON')
+
+    if type(req_d) == list and len(req_d) > 0:
+        i = 0
+        for sub in req_d:
+            if type(sub) is not dict:
+                raise BadRequest(description='Not a JSON')
+            if 'name' not in sub:
+                raise BadRequest(description='Missing name')
+            sub_obj = Suburb(**sub)
+            sub_obj.save()
+            i += 1
+        return jsonify({"message": f"{i} suburbs added successfully"}), 201
+    
     if type(req_d) is not dict:
         raise BadRequest(description='Not a JSON')
     if 'name' not in req_d:
         raise BadRequest(description='Missing name')
     sub_obj = Suburb(**req_d)
+
     sub_obj.save()
     return jsonify(sub_obj.to_dict()), 201
 

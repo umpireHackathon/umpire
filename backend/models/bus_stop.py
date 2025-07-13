@@ -19,7 +19,6 @@ class BusStop(BaseModel, Base):
         route_id = Column(Integer, ForeignKey('routes.id'), nullable=True)
         # Relationships
         suburb = relationship("Suburb", back_populates="bus_stops")
-        route = relationship("Route", back_populates="bus_stops")
     else:
         id = ""
         name = ""

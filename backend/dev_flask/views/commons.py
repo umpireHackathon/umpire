@@ -18,12 +18,19 @@ def manipulate(fn, id_, data):
 
 def fetch_data(obj):
     """Retrieves data from data base"""
-    return storage.all(obj).values()
+    try:
+        return storage.all(obj).values()
+    except Exception as e:
+        print(f"----------------Error fetching data: {e}----------------")
+        return []
 
 
 def fetch_data_id(obj, id_):
     """Retrieves data from data base"""
-    return storage.get(obj, id_)
+    try:
+        return storage.get(obj, id_)
+    except Exception as e:
+        return {"error": str(e)}
 
 
 def fetch_process(obj, fn, id_):
