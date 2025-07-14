@@ -2,6 +2,18 @@
 """create a unique FileStorage instance for your application"""
 
 import os
+
+from backend.models.agency import Agency
+from backend.models.bus_stop import BusStop
+from backend.models.route import Route
+from backend.models.ml_model import MLModel
+from backend.models.terminal import Terminal
+from backend.models.suburb import Suburb
+from backend.models.vehicle import Vehicle
+from backend.models.trip import VehicleTrip
+from backend.models.user import User
+from backend.models.association import route_terminals, routed_vehicles, agency_terminals, route_agencies
+
 from dotenv import load_dotenv
 
 load_dotenv()

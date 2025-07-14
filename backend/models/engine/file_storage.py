@@ -2,16 +2,18 @@
 """This module defines a class to manage file storage for hbnb clone"""
 
 import json
-from backend.models.agency import Agency
 from backend.models.base_model import BaseModel
-from backend.models.route import Route
-from backend.models.suburb import Suburb
-from backend.models.bus_stop import BusStop
-from backend.models.terminal import Terminal
-from backend.models.user import User
-from backend.models.vehicle import Vehicle
-from backend.models.trip import VehicleTrip
-
+from backend.models import (
+    Suburb,
+    BusStop,
+    Agency,
+    User,
+    Route,
+    MLModel,
+    Terminal,
+    Vehicle,
+    VehicleTrip
+)
 
 
 class FileStorage:

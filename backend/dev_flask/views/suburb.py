@@ -3,7 +3,7 @@
 from backend.dev_flask.views import app_views
 
 from backend.models import storage
-from backend.models.suburb import Suburb
+from backend.models import Suburb
 
 from flask import jsonify, request
 from werkzeug.exceptions import NotFound, MethodNotAllowed, BadRequest

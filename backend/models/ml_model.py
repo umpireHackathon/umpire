@@ -1,16 +1,19 @@
-from os import getenv
+# !/usr/bin/python3
+""" MLModel Module for HBNB project """
 
-
-from backend.models import storage_type
+import os
+from dotenv import load_dotenv
 from backend.models.base_model import BaseModel, Base
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String
 
+load_dotenv()
+
+STORAGE_TYPE = os.getenv("UMPIRE_TYPE_STORAGE", "file")
 
 
 class MLModel(BaseModel, Base):
     """ The MLModel class, contains model ID and name """
-    if storage_type == "db":
+    if STORAGE_TYPE == "db":
         __tablename__ = 'ml_model'
         name = Column(String, nullable=False)
         version = Column(String, nullable=False)

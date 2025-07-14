@@ -1,13 +1,21 @@
 #!/usr/bin/python3
 """This module defines a base class for all models in our hbnb clone"""
+
+import os
 import uuid
 from datetime import datetime
 from backend import models
-from backend.models import storage_type
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, MetaData
+from sqlalchemy import Column, String, DateTime
+from dotenv import load_dotenv
 
-if storage_type == "db":
+load_dotenv()
+
+STORAGE_TYPE = os.getenv("UMPIRE_TYPE_STORAGE", "file")
+
+print(f"----------STORAGE_TYPE: {STORAGE_TYPE}")
+
+if STORAGE_TYPE == "db":
     Base = declarative_base()
 else:
     Base = object
@@ -16,7 +24,7 @@ else:
 class BaseModel:
     """A base class for all hbnb models"""
 
-    if storage_type == "db":
+    if STORAGE_TYPE == "db":
         id = Column(String(60), primary_key=True)
         created_at = Column(DateTime, nullable=False, default=datetime.utcnow())
         updated_at = Column(DateTime, nullable=False, default=datetime.utcnow())
@@ -24,7 +32,7 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Instantiates a new model"""
         if kwargs:
-            if storage_type != 'db':
+            if STORAGE_TYPE != 'db':
                 kwargs.pop('__class__', None)
             if 'id' not in kwargs:
                 kwargs['id'] = str(uuid.uuid4())

@@ -1,12 +1,29 @@
 #!/usr/bin/python3
 """ new class for sqlAlchemy """
-from os import getenv
+
+import os
+from backend.models.base_model import BaseModel, Base
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import (create_engine)
-from backend.models.base_model import Base
-from backend.models.suburb import Suburb
-from backend.models.bus_stop import BusStop
+from backend.models import (
+    Suburb,
+    BusStop,
+    Agency,
+    User,
+    Route,
+    MLModel,
+    Terminal,
+    Vehicle,
+    VehicleTrip
+)
+from dotenv import load_dotenv
 
+load_dotenv()
+
+classes = [
+    Suburb, BusStop, Agency, User, Route,
+    MLModel, Terminal, Vehicle, VehicleTrip
+]
 
 class DBStorage:
     """ create tables in environmental"""
@@ -14,11 +31,11 @@ class DBStorage:
     __session = None
 
     def __init__(self):
-        user = getenv("UMPIRE_DB_USER")
-        passwd = getenv("UMPIRE_DB_PWD")
-        db = getenv("UMPIRE_DB")
-        host = getenv("UMPIRE_DB_HOST")
-        env = getenv("UMPIRE_ENV")
+        user = os.getenv("UMPIRE_DB_USER")
+        passwd = os.getenv("UMPIRE_DB_PWD")
+        db = os.getenv("UMPIRE_DB")
+        host = os.getenv("UMPIRE_DB_HOST")
+        env = os.getenv("UMPIRE_ENV")
         print("============DBStorage initialized with user: {}, db: {}, host: {}, env: {}, passwd: {}"
               .format(user, db, host, env, passwd))
         # initializes the db storage
@@ -37,7 +54,7 @@ class DBStorage:
         dic = {}
         
         if not cls:
-            tables = [Suburb, BusStop]
+            tables = classes
         else:
             if type(cls) == str:
                 cls = eval(cls)
@@ -58,6 +75,11 @@ class DBStorage:
         if obj:
             self.__session.add(obj)
 
+    def new_all(self, *args):
+        """ This method adds all instances to the session """
+        for obj in args:
+            self.__session.add(obj)
+
     def save(self):
         """save changes
         """
@@ -67,8 +89,14 @@ class DBStorage:
         """delete an element in the table
         """
         if obj:
-            self.session.delete(obj)
+            self.__session.delete(obj)
 
+    def delete_all(self):
+        """ This method deletes all instances from the session """
+        for c in classes:
+            self.__session.query(c).delete()
+        self.save()
+        
     def reload(self):
         """configuration
         """
@@ -77,6 +105,40 @@ class DBStorage:
         Session = scoped_session(sec)
         self.__session = Session()
 
+    def get(self, cls, id):
+        """ This method retrieves an instance from the session
+        Args:
+            cls (str): The class name
+            id (str): The instance id
+        Returns: The instance or None
+        """
+        if id is None or cls is None:
+            return None
+        objs = self.all(cls)
+        return objs.get('{}.{}'.format(cls, id))
+    
+    def get_by(self, cls, **kwargs):
+        """ This method returns a list of instances of a class that match the keyword arguments """
+        if cls:
+            return self.__session.query(cls).filter_by(**kwargs).all()
+        return None
+    
+    def get_one_by(self, cls, **kwargs):
+        """ This method returns the first instance of a class that matches the keyword arguments """
+        if cls:
+            return self.__session.query(cls).filter_by(**kwargs).first()
+        return None
+
+    def get_or_create(self, cls, **kwargs):
+        """ This method returns the first instance of a class that matches the keyword arguments
+        or creates a new instance if one does not exist """
+        instance = self.get_one_by(cls, **kwargs)
+        if instance is None:
+            instance = cls(**kwargs)
+            self.new(instance)
+            self.save()
+        return instance
+    
     def close(self):
         """ calls remove()
         """
