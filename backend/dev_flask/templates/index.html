@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Umpire</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}">
+</head>
+<body>
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename=icon) }}" alt="Umpire Icon">
+    </div>
+
+    <div class="container" style="display: flex; justify-content: space-between; align-items: stretch;">
+        <div class="left-menu">
+            <div>
+            <h2>Tasks</h2>
+            <ul>
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">ML</a></li>
+                <li><a href="#">Optimize Route</a></li>
+            </ul>                
+            </div>
+
+
+            <h2>Terminals</h2>
+            <ul>
+                {% for terminal in terminals %}
+                    <li>
+                        <a href="#{{ terminal['id'] }}">
+                            {{ terminal['name'] }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <div class="map-container">
+            <iframe id="map-iframe" src="{{ url_for('static', filename=accra_map) }}" style="opacity:1; transition: opacity 0.3s ease;"></iframe>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const iframe = document.getElementById('map-iframe');
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+
+                        // Only update if different from current src
+                        const newSrc = "{{ url_for('app_views.map_with_location') }}?lat=" + lat + "&lon=" + lon;
+                        if (iframe.src !== newSrc) {
+                            iframe.style.opacity = 0;
+                            iframe.onload = function () {
+                                iframe.style.opacity = 1;
+                            };
+                            iframe.src = newSrc;
+                        }
+                    },
+                    function (error) {
+                        console.error("Geolocation error:", error.message);
+                    }
+                );
+            } else {
+                console.error("Geolocation is not supported by this browser.");
+            }
+        };
+
+    </script>
+</body>
+</html>

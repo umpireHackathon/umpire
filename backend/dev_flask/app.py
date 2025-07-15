@@ -4,8 +4,10 @@ Starting the Flask app for Umpire
 """
 
 import os
-from flask import Flask, jsonify, request
+import folium
+from flask import Flask, jsonify, request, render_template, redirect, url_for
 from flask_cors import CORS
+import requests
 from werkzeug.exceptions import HTTPException
 from flasgger import Swagger
 from flasgger.utils import swag_from
@@ -53,15 +55,33 @@ def handle_http_exception(e):
     response.status_code = e.code
     return response
 
-# Root route
 @app.route('/', strict_slashes=False)
 def index():
     """
     Basic welcome endpoint
     """
-    return jsonify({
-        "message": "Welcome to the Umpire API! Use /backend/flask for API access."
-    })
+    # Create default map centered on Accra
+    accra_map = folium.Map(location=[5.6037, -0.1870], zoom_start=12)
+
+    # Resolve static/ path
+    static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+    os.makedirs(static_dir, exist_ok=True)
+
+    # Save default map
+    accra_map_path = os.path.join(static_dir, 'accra_map.html')
+    accra_map.save(accra_map_path)
+    
+    # Fetch terminals for the map
+    try:
+        terms = requests.get('http://127.0.0.1:5000/api/terminals', timeout=5).json()
+    except Exception as e:
+        print(f"Error fetching terminals: {str(e)}")
+        terms = []
+
+    # Render template with icon and default map
+    return render_template("index.html", icon='assets/logo.svg', accra_map='accra_map.html', terminals=terms)
+
+
 
 # Entry point
 if __name__ == '__main__':

@@ -11,6 +11,7 @@ from backend.dev_flask.views.bus_stop import *
 from backend.dev_flask.views.terminal import *
 from backend.dev_flask.views.route import *
 from backend.dev_flask.views.vehicle import *
+from backend.dev_flask.views.maps import *
 
 
 # Prediction views
