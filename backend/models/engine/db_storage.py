@@ -36,8 +36,7 @@ class DBStorage:
         db = os.getenv("UMPIRE_DB")
         host = os.getenv("UMPIRE_DB_HOST")
         env = os.getenv("UMPIRE_ENV")
-        print("============DBStorage initialized with user: {}, db: {}, host: {}, env: {}, passwd: {}"
-              .format(user, db, host, env, passwd))
+        print("============DBStorage initialized ================")
         # initializes the db storage
         self.__engine = create_engine('postgresql+psycopg2://{}:{}@{}/{}'
                                        .format(user, passwd, host, db),

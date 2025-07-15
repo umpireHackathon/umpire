@@ -35,8 +35,15 @@ if STORAGE_TYPE == "db":
         Column('route_id', Integer, ForeignKey('routes.id'), primary_key=True),
         Column('agency_id', Integer, ForeignKey('agencies.id'), primary_key=True)
     )
+
+    route_stops = Table(
+        'route_stops', Base.metadata,
+        Column('route_id', Integer, ForeignKey('routes.id'), primary_key=True),
+        Column('bus_stop_id', Integer, ForeignKey('bus_stops.id'), primary_key=True)
+    )
 else:
     routed_vehicles = None
     route_terminals = None
     agency_terminals = None
     route_agencies = None
+    route_stops = None

@@ -13,8 +13,6 @@ load_dotenv()
 
 STORAGE_TYPE = os.getenv("UMPIRE_TYPE_STORAGE", "file")
 
-print(f"----------STORAGE_TYPE: {STORAGE_TYPE}")
-
 if STORAGE_TYPE == "db":
     Base = declarative_base()
 else:

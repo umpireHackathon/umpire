@@ -19,9 +19,10 @@ class Route(BaseModel, Base):
         name = Column(String(128), nullable=False)
         distance_km = Column(Float, nullable=False)
         # Relationships
-        bus_stops = relationship("BusStop", back_populates="route")
+        bus_stops = relationship("BusStop", secondary='route_stops', back_populates="routes")
         terminals = relationship("Terminal", secondary='route_terminals', back_populates="routes")
         vehicles = relationship("Vehicle", secondary='routed_vehicles', back_populates="routes")
+        agencies = relationship("Agency", secondary='route_agencies', back_populates="routes")
     else:
         id = ""
         name = ""
@@ -29,7 +30,8 @@ class Route(BaseModel, Base):
         travel_time = 0.0
         bus_stops = []
         vehicles = []
-        terminals = []      
+        terminals = []
+        agencies = []
 
         @property
         def stops(self):

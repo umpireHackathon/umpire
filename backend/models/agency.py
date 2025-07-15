@@ -18,8 +18,10 @@ class Agency(BaseModel, Base):
         agency_url = Column(String(256), nullable=False)
         # Relationships
         terminals = relationship("Terminal", secondary='agency_terminals', back_populates="agencies")
+        routes = relationship("Route", secondary='route_agencies', back_populates="agencies")
 
     else:
         name = ""
         agency_url = ""
         terminals = []
+        routes = []

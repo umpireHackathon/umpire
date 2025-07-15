@@ -12,6 +12,7 @@ from backend.models.agency import Agency
 from backend.models.ml_model import MLModel
 from backend.models.terminal import Terminal
 from backend.models.association import routed_vehicles, route_terminals, agency_terminals, route_agencies
+from backend.models.vehicle import Vehicle
 
 
 # Sources files
@@ -21,11 +22,14 @@ src_suburb = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/suburbs.csv
 src_bus_stop = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/bus_stops.csv"))
 src_route = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/routes.csv"))
 src_route_stops = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/route_stops.csv"))
+src_route_agency = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/route_agency.csv"))
+src_agency_terminal = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/agency_terminals.csv"))
 src_ml_model = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/ml_model.csv"))
 src_terminal = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/terminals.csv"))
 src_association = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/route_terminals.csv"))
+src_vehicle = os.path.abspath(os.path.join(wrkdir, "../data_src/to_db/vehicles.csv"))
 
-# Utility function
+# --------------Utility function---------------------
 def get_list_from_string(s):
     """Extracts all wordandnumber from a string formatted like '[wordandnumber, wordandnumber, ...]'."""
     func = lambda x: x.strip().strip("'").strip('"')
@@ -34,16 +38,54 @@ def get_list_from_string(s):
         return re.findall(r'\b\w+\d*\b', s)
     return []
 
+def get_name_from_csv_by_id(id_, id_col_name, df):
+    """Retrieve an object from a DataFrame using its ID."""
+    if not id_ or df.empty:
+        return None
+    name = df[df[id_col_name] == id_]['name'].values[0]
+    if name:
+        return name
+    return None
+
+def association_with_routes(route_obj, parent_obj):
+    if route_obj and parent_obj:
+        if route_obj not in parent_obj.routes:
+            parent_obj.routes.append(route_obj)
+            storage.new(parent_obj)
+
+def association_with_terminals(terminal_obj, agency_obj):
+    if terminal_obj and agency_obj:
+        if terminal_obj not in agency_obj.terminals:
+            agency_obj.terminals.append(terminal_obj)
+            storage.new(agency_obj)
+
+def get_obj_through_csv_by_id(id_, required_cols, df, col_name, cls):
+    """Retrieve an object from a DataFrame using its ID."""
+    if not id_ or df.empty:
+        return None
+    # get the object from csv
+    
+    obj = df[df[col_name] == id_][required_cols].to_dict(orient='records')[0]
+    if obj:
+        # remove any key with NaN value
+        obj = {k: v for k, v in obj.items() if pd.notna(v)}
+        # retrieve the object from the database
+        obj = storage.get_or_create(cls, **obj)
+        return obj
+    return None
 
 def check_columns(df, required_columns):
     """Check if the DataFrame contains all required columns."""
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
         raise ValueError(f"DataFrame is missing required columns: {', '.join(missing_columns)}")
-
+# ---------------------------------------------
 
 def load_agency():
     """Load agency data from CSV and save to database.
+    Association with: 
+        - routes
+        - terminals
     Expected CSV format:
         - id, name, agency_url
     Required columns:
@@ -54,23 +96,42 @@ def load_agency():
     """
     if os.path.exists(src_agency):
         df_agency = pd.read_csv(src_agency)
+        df_routes = pd.read_csv(src_route)
+        df_terminals = pd.read_csv(src_terminal)
+        df_agency_terminals = pd.read_csv(src_agency_terminal)
+        df_route_agencies = pd.read_csv(src_route_agency)
+        # Convert agencies' terminal ids to a list of terminal objects
+        df_agency_terminals['stop_ids'] = df_agency_terminals['stop_ids'].apply(get_list_from_string)
+        # print(df_agency_terminals['stop_ids'].head())
+        df_agency_terminals['stop_ids'] = df_agency_terminals['stop_ids'].apply(lambda x:
+                                                                      [get_obj_through_csv_by_id(
+                                                                          i, ['name', 'latitude', 'longitude'],
+                                                                          df_terminals[['stop_id', 'name', 'latitude', 'longitude']], 'stop_id', Terminal) for i in x]) 
         # Check if required columns are present
         required_columns = ['name', 'agency_url']
         check_columns(df_agency, required_columns)
 
-        df_agency = df_agency[required_columns]  # Keep only required columns
+        # df_agency = df_agency[required_columns]  # Keep only required columns
         df_agency = df_agency.drop_duplicates(subset=['name', 'agency_url'])
 
         for _, row in df_agency.iterrows():
-            print("-------------------------------------------")
-            print(row.to_dict())
-            print("-------------------------------------------")
-            agency = Agency(**row.to_dict())
-            try:
-                agency.save()
-            except Exception as e:
-                print(f"Agency {row['name']} already exists, skipping.")
-                print(f"Error: {e}")
+            # get associated routes
+            routes = df_route_agencies[df_route_agencies['agency_id'] == row['agency_id']]['route_id'] #get_obj_through_csv_by_id
+            routes = routes.apply(lambda r_id: get_obj_through_csv_by_id(
+                r_id, ['name', 'distance_km'], df_routes, 'route_id', Route)).values
+            # get associated terminals
+            terminals = df_agency_terminals[df_agency_terminals['agency_id'] == row['agency_id']]['stop_ids'].values[0]
+
+            agency = storage.get_or_create(Agency, **row[required_columns].to_dict())
+
+            if agency:
+                # Associate routes with the agency
+                for route in routes:
+                    association_with_routes(route, agency)
+                # Associate terminals with the agency
+                for terminal in terminals:
+                    association_with_terminals(terminal, agency)
+        storage.save()
         print(f"Agencies loaded: {len(df_agency)}")
     else:
         print(f"Agency source file not found: {src_agency}")
@@ -168,39 +229,6 @@ def load_terminals():
     else:
         print(f"Terminal source file not found: {src_terminal}")
 
-
-def load_bus_stops():
-    """
-    Load bus stop data from CSV and save to database.
-    Expected CSV format:
-        - [stop_id,name,latitude,longitude,suburb_id]
-    Required columns for db:
-        - [name, latitude, longitude]
-    Expected schema for db:
-        name VARCHAR(128) NOT NULL,
-        latitude DOUBLE PRECISION NOT NULL,
-        longitude DOUBLE PRECISION NOT NULL,
-        suburb_id VARCHAR(255) NULL REFERENCES suburbs(id) ON DELETE CASCADE,
-        route_id VARCHAR(255) REFERENCES routes(id) ON DELETE SET NULL,
-    """
-    if os.path.exists(src_bus_stop):
-        df_bus_stop = pd.read_csv(src_bus_stop)
-        df_route_stops = pd.read_csv(src_route_stops)
-        df_route = pd.read_csv(src_route)
-
-        # Check if required columns are present
-        required_columns = ['stop_id', 'name', 'latitude', 'longitude']
-        check_columns(df_bus_stop, required_columns)
-
-        df_bus_stop = df_bus_stop[required_columns]  # Keep only required columns
-        df_bus_stop = df_bus_stop.drop_duplicates(subset=required_columns)
-
-        for _, row in df_bus_stop.iterrows():
-            # -----------get route_id from df_route_stops-----------------
-            pass
-
- 
-
 def load_route_terminals():
     """
     Load route terminals from CSV and save to database.
@@ -232,7 +260,6 @@ def load_route_terminals():
             route_name = df_routes[df_routes['route_id'] == route_id]['name'].values[0]
             route_obj = storage.get_one_by(Route, name=route_name)
             if not route_obj:
-                print(f"Route {route_name} not found, skipping.")
                 continue
             # Convert stop_ids to a list of terminal IDs
             term_ids = get_list_from_string(row['stop_ids'])
@@ -241,13 +268,85 @@ def load_route_terminals():
                 if not term_dict.empty:
                     term_name = term_dict['name'].values[0]
                     terminal = storage.get_one_by(Terminal, name=term_name)
-                    if terminal and (terminal not in route_obj.terminals):
-                        route_obj.terminals.append(terminal)
-                        storage.new(route_obj)  # Mark as modified
+                    association_with_routes(route_obj, terminal)
         storage.save()
         print(f"Route-Terminal associations loaded: {len(df_association)}")
     else:
         print(f"Route-Terminal association file not found: {src_association}")
+
+
+def load_bus_stops():
+    """
+    Load bus stop data from CSV and save to database.
+    Association with:
+        - routes
+    Expected CSV format:
+        - [stop_id,name,latitude,longitude,suburb_id]
+    Required columns for db:
+        - [name, latitude, longitude]
+    Expected schema for db:
+        name VARCHAR(128) NOT NULL,
+        latitude DOUBLE PRECISION NOT NULL,
+        longitude DOUBLE PRECISION NOT NULL,
+        suburb_id VARCHAR(255) NULL REFERENCES suburbs(id) ON DELETE CASCADE,
+    """
+    if os.path.exists(src_bus_stop):
+        df_bus_stop = pd.read_csv(src_bus_stop)
+        df_route_stops = pd.read_csv(src_route_stops)
+        df_route = pd.read_csv(src_route)
+
+        # Check if required columns are present
+        required_columns = ['stop_id', 'name', 'latitude', 'longitude']
+        check_columns(df_bus_stop, required_columns)
+
+        df_bus_stop = df_bus_stop[required_columns]  # Keep only required columns
+        df_bus_stop = df_bus_stop.drop_duplicates(subset=required_columns)
+        df_route_stops['stop_ids'] = df_route_stops['stop_ids'].apply(get_list_from_string)
+
+        # Create bus_stops and get their ids and route to ids
+        df_route_stops['stop_ids'] = df_route_stops['stop_ids'].apply(lambda x: 
+                                                                      [get_obj_through_csv_by_id(
+                                                                          i, ['name', 'latitude', 'longitude'],
+                                                                          df_bus_stop, 'stop_id', BusStop) for i in x])
+        df_route_stops['route_id'] = df_route_stops['route_id'].apply(lambda x: 
+                                                                      get_obj_through_csv_by_id(
+                                                                          x, ['name', 'distance_km'],
+                                                                          df_route, 'route_id', Route)) 
+        # Create routes and their respective bus stops  
+        for _, row in df_route_stops.iterrows():
+            route_obj = row['route_id']
+            bus_stop_objs = row['stop_ids']
+            for stop in bus_stop_objs:
+                association_with_routes(route_obj, stop)
+        storage.save()
+
+        print(f"Route stops loaded: {len(df_route_stops)}")
+
+def load_vehicles():
+    """Loads vehicles from CSV and save to database.
+    Expected CSV format:
+        - [vehicle_number, capacity, latitude, longitude]
+    Required columns for db:
+        - [vehicle_number, latitude, longitude, capacity]
+    Expected schema for db:
+        vehicle_number VARCHAR(128) NOT NULL,
+        latitude DOUBLE PRECISION,
+        longitude DOUBLE PRECISION,
+        capacity INTEGER NOT NULL,
+    """
+    required_columns = ['vehicle_number', 'latitude', 'longitude', 'capacity']
+    df_veh = pd.read_csv(src_vehicle)
+
+    check_columns(df_veh, required_columns)
+    
+    df_veh = df_veh.drop_duplicates(subset=required_columns)
+    df_veh = df_veh[required_columns]
+
+    for _, row in df_veh.iterrows():
+        vehicle = storage.get_or_create(Vehicle, **row.to_dict())
+    storage.save()
+
+    print(f"Vehicles loaded: {len(df_veh)}")
 
 def populate_db():
     """Populate the database with initial data."""
@@ -257,9 +356,9 @@ def populate_db():
     # load_suburb()
     # load_terminals()
     # load_route_terminals()
-    load_bus_stops()
+    # load_bus_stops()
+    load_vehicles()
 
     print("Database population completed. Note: Some sections are commented out for testing purposes.")
 if __name__ == "__main__":
     populate_db()
-    

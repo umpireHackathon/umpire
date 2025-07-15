@@ -7,8 +7,8 @@ from backend.models import Suburb
 
 from flask import jsonify, request
 from werkzeug.exceptions import NotFound, MethodNotAllowed, BadRequest
-from .commons import (manipulate, fetch_data, fetch_data_id, fetch_process,
-                      reach_endpoint, allows, err_msg)
+from .commons import (fetch_data, fetch_process,
+                      reach_endpoint, allows)
 
 def get_suburb(suburb_id=None):
     """Returns the suburb using the given id.
@@ -28,16 +28,13 @@ def get_suburb(suburb_id=None):
 def add_suburb(suburb_id=None):
     """Add new suburb into the system.
     """
-    
-    req_d = request.get_json()
-    print("=============", type(req_d), "================")
-
-    if len(req_d) == 0:
+    data = request.get_json()
+    if not data:
         raise BadRequest(description='Not a JSON')
 
-    if type(req_d) == list and len(req_d) > 0:
+    if type(data) == list and len(data) > 0:
         i = 0
-        for sub in req_d:
+        for sub in data:
             if type(sub) is not dict:
                 raise BadRequest(description='Not a JSON')
             if 'name' not in sub:
@@ -46,15 +43,15 @@ def add_suburb(suburb_id=None):
             sub_obj.save()
             i += 1
         return jsonify({"message": f"{i} suburbs added successfully"}), 201
-    
-    if type(req_d) is not dict:
-        raise BadRequest(description='Not a JSON')
-    if 'name' not in req_d:
-        raise BadRequest(description='Missing name')
-    sub_obj = Suburb(**req_d)
 
-    sub_obj.save()
-    return jsonify(sub_obj.to_dict()), 201
+    if type(data) is not dict:
+        raise BadRequest(description='Not a JSON')
+    if 'name' not in data:
+        raise BadRequest(description='Missing name')
+    suburb = Suburb(**data)
+
+    suburb.save()
+    return jsonify(suburb.to_dict()), 201
 
 
 def delete_suburb(suburb_id=None):

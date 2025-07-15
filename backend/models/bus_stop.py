@@ -19,14 +19,14 @@ class BusStop(BaseModel, Base):
         latitude = Column(Float, nullable=False)
         longitude = Column(Float, nullable=False)
         suburb_id = Column(Integer, ForeignKey('suburbs.id'), nullable=False)
-        route_id = Column(Integer, ForeignKey('routes.id'), nullable=True)
         # Relationships
         suburb = relationship("Suburb", back_populates="bus_stops")
-        route = relationship("Route", back_populates="bus_stops")
+        routes = relationship("Route", secondary='route_stops', back_populates="bus_stops")
     else:
         id = ""
         name = ""
         latitude = 0.0
         longitude = 0.0
         suburb_id = ""
-        route_id = ""
+        suburb = None
+        routes = []

@@ -12,7 +12,7 @@ from backend.models.suburb import Suburb
 from backend.models.vehicle import Vehicle
 from backend.models.trip import VehicleTrip
 from backend.models.user import User
-from backend.models.association import route_terminals, routed_vehicles, agency_terminals, route_agencies
+from backend.models.association import route_terminals, routed_vehicles, agency_terminals, route_agencies, route_stops
 
 from dotenv import load_dotenv
 

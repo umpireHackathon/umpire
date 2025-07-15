@@ -10,18 +10,20 @@ from sqlalchemy.orm import relationship
 load_dotenv()
 
 STORAGE_TYPE = os.getenv("UMPIRE_TYPE_STORAGE", "file")
-
+# Sources files
+wrkdir = os.path.dirname(os.path.abspath(__file__))  # full absolute path to current script
+src_vehicle_icon = os.path.abspath(os.path.join(wrkdir, "../../assets/bus3.png"))
 
 class Vehicle(BaseModel, Base):
     """ The vehicle class, contains vehicle ID and name """
     if STORAGE_TYPE == "db":
         __tablename__ = 'vehicles'
-        name = Column(String(128), nullable=False)
         vehicle_number = Column(String(128), nullable=False)
         latitude = Column(Float, nullable=True)
         longitude = Column(Float, nullable=True)
         capacity = Column(Integer, nullable=False)
         assigned = Column(Boolean, default=False, nullable=False)
+        icon = Column(String(255), nullable=False, default=src_vehicle_icon)
         # Relationship to Route
         routes = relationship("Route", secondary='routed_vehicles', back_populates="vehicles")
 
