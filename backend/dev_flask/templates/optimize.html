@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block head %}
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/optimization.css') }}">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+{% endblock %}
+{% block leftContentTasks %}
+    <h2>Tasks</h2>
+    <ul class="left-menu-tasks">
+        <li><a href="#">Optimized Routes <i class="fa-solid fa-circle-xmark" style="color: red;"></i></a></li>
+    </ul>
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="optimize-container" style="overflow-y: scroll; height: 100vh; padding: 20px; box-sizing: border-box;">
+
+        <h2>Route Optimization for {{ optimizationData.day | capitalize }}</h2>
+
+        {% if not route_optimized %}
+            <div class="optimize-form" style="margin-right: 10px;">
+                <!-- <a href="#" class="btn add_optimization_details">Cancel</a> -->
+                <div class="optimization-form" id="optimization-form">
+                    <br>
+                    <div style="margin-top: 10px; align-items: left;">
+                        <div class="upload-form" style="margin-left: 10px;">
+                            <p id="uploadResult"></p>
+                            <div id="uploadStats">
+                                {% if optimizationData.stats %}
+                                    
+                                    <h2 style="height: 50px; background-color: #ccc;">Descriptive Statistics:</h2>
+                                    <div style="overflow: auto; max-height: 500px; margin-bottom: 5px;">
+                                        {{ optimizationData.stats[0] | safe }}
+                                    </div>
+
+                                    <div style="margin-top: 10px;">
+                                        <h2 style="height: 50px; background-color: #ccc;">Vehicle Data:</h2>
+                                        <div style="overflow: auto; max-height: 500px;">
+                                            
+                                            <div id="vehicle-table-wrapper">
+                                                {{ optimizationData.stats[1] | safe }}
+                                            </div>
+                                        </div>
+                                {% else %}
+                                    <p>No stats available.</p>
+                                {% endif %}
+                            </div>
+                            <!-- <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
+                                <p><input type="file" name="file" id="fileInput" required></p>
+                                <p><button id="uploadButton" type="button">Upload</button></p>
+                            </form> -->
+
+
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 10px; background-color: #ccc;">
+                            <button type="submit" class="btn" style="background-color: rgb(156, 225, 246);">Optimize</button>
+                            <div style="padding: 0 10px; margin-bottom: 10px; ">
+                                <form id="uploadForm" enctype="multipart/form-data">
+                                    <div style="display: flex; flex-direction: column;">
+                                        <input type="file" id="file" name="file" accept=".csv" required />
+                                        <input type="number" id="numVehicles-upload" name="numVehicles" placeholder="number of vehicles" required />
+                                        <button type="submit">Upload</button>
+                                    </div>
+
+                                </form>                               
+                            </div>
+                            <form id="uploadForm-db" class="uploadForm" enctype="multipart/form-data">
+                                <input type="number" id="numVehicles" name="numVehicles" placeholder="number of vehicles" required />
+                                <div style="display: flex; flex-direction: column;">
+                                    <button type="submit" class="btn loadFromDB" id="loadFromDB">Generate from database</button>
+                                    <button type="button" class="btn" id="saveToDB">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="map-container">
+                <h3>Optimized Route</h3>
+                {{ map_html|safe }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/optimize.js') }}"></script>
+
+{% endblock %}

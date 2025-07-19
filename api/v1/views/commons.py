@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 """Has functions and other items common to all views"""
+from flask import current_app, jsonify
 from backend.models import storage
 
 
@@ -58,3 +59,13 @@ def delete_obj(obj):
     if obj:
         storage.delete(obj)
         storage.save()
+
+def fetch_data_url(url):
+    """Fetches data from a given internal URL and returns it as JSON"""
+    with current_app.test_client() as client:
+        response = client.get(url)
+    if response.status_code == 200:
+        return response.get_json()
+    else:
+        print(f"Error fetching data: {response.status_code} - {response.text}")
+        return {"error": "Failed to fetch data"}, response.status_code

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accra Map Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <!-- Font awesome: js -->
+    <script src="https://kit.fontawesome.com/683316fe43.js" crossorigin="anonymous"></script>      <!-- fonts.gtatic.com -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <div class="header-container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="logo">
+            <img src="../static/assets/logo.svg" alt="Umpire Icon">
+        </div>
+        <div class="header-title" style="text-align: center; flex-grow: 1;">
+            <h1>Accra Transportation Network</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('travel') }}">Travel</a></li>
+                    <li><a href="{{ url_for('optimize') }}" id="optimize-route-link">Optimize Route</a></li>
+                </ul>
+            </nav>
+        </div>
+        </div>
+
+
+    </header>
+
+    <main>
+        <div class="content-wrapper" style="display: flex; width: 100%; height: 100vh; overflow: hidden;">
+            <div class="left-menu" style="width: 15%; margin-right: 50px; padding-left: 10px">
+                {% block leftContentTasks %}
+                <h2>Explore</h2>
+                <ul class="left-menu-tasks">
+                    <li><button id="left-menu-button-route" class="">Routes</button></li>
+                    <li><button id="left-menu-button-terminal" class="">Terminals</button></li>
+                    <li><button id="left-menu-button-stop" class="">Stops Route</button></li>
+                </ul>
+                {% endblock %}
+            </div>
+            <div class="main-content" style="width: 100%; padding-right: 10px;">
+            {% block content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Accra Navigation System</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+    {% block scripts %}
+    
+
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,11 @@
+.my-terminal-icon
+{
+    /* position: relative; */
+    /* background-color: aqua; */
+    width: 10px;
+    height: 10px;
+}
+.my-terminal-icon
+{
+    content: '';
+}

@@ -94,6 +94,7 @@ def load_agency():
         name VARCHAR(128) NOT NULL,
         agency_url VARCHAR(256) NOT NULL,
     """
+    print(f"Loading agencies from {src_agency}")
     if os.path.exists(src_agency):
         df_agency = pd.read_csv(src_agency)
         df_routes = pd.read_csv(src_route)
@@ -122,6 +123,7 @@ def load_agency():
             # get associated terminals
             terminals = df_agency_terminals[df_agency_terminals['agency_id'] == row['agency_id']]['stop_ids'].values[0]
 
+            print(f"Agency: {row['name']}, Routes: {len(routes)}, Terminals: {len(terminals)}")
             agency = storage.get_or_create(Agency, **row[required_columns].to_dict())
 
             if agency:
@@ -131,6 +133,8 @@ def load_agency():
                 # Associate terminals with the agency
                 for terminal in terminals:
                     association_with_terminals(terminal, agency)
+        print(f"Agencies loaded: {len(df_agency)}")
+        # Save the changes to the database
         storage.save()
         print(f"Agencies loaded: {len(df_agency)}")
     else:
@@ -350,15 +354,15 @@ def load_vehicles():
 
 def populate_db():
     """Populate the database with initial data."""
-    # load_agency()
+    load_agency()
     # load_suburb()
     # load_routes()
     # load_suburb()
     # load_terminals()
     # load_route_terminals()
     # load_bus_stops()
-    load_vehicles()
+    # load_vehicles()
 
-    print("Database population completed. Note: Some sections are commented out for testing purposes.")
+
 if __name__ == "__main__":
     populate_db()

@@ -1,0 +1,60 @@
+.read-only{
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+table {
+    /* width: 50px; */
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.success, .error {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.optimize-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+.add_optimization_details {
+    background-color: #007bff;
+    color: white;
+}
+.upload-form button {
+    /* background-color: #bcbdbc; */
+    border: 1px solid #ccc;
+    /* color: white; */
+}
+.upload-form button:hover {
+    cursor: pointer;
+}
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.stats-table th, .stats-table td {
+    border: 1px solid black;
+    padding: 8px;
+}

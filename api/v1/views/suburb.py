@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""Renders amenities info"""
-from backend.dev_flask.views import app_views
+"""Renders suburb of Accra info"""
 
+from api.v1.views import app_views
 from backend.models import storage
 from backend.models import Suburb
-
 from flask import jsonify, request
 from werkzeug.exceptions import NotFound, MethodNotAllowed, BadRequest
 from .commons import (fetch_data, fetch_process,

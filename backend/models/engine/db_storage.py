@@ -40,9 +40,7 @@ class DBStorage:
         # initializes the db storage
         self.__engine = create_engine('postgresql+psycopg2://{}:{}@{}/{}'
                                        .format(user, passwd, host, db),
-                                       pool_pre_ping=True)
-        if env == "test":
-            Base.metadata.drop_all(self.__engine)
+                                       pool_pre_ping=True)   
 
     def all(self, cls=None):
         """returns a dictionary

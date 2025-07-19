@@ -1,0 +1,144 @@
+# Problem Formulation: Accra Bus Network Optimization
+
+## 1. Introduction
+
+The objective of this project is to design a highly efficient and economically viable public bus transportation network for the city of Accra. The core challenge is to create an optimal set of bus routes and allocate the city's bus fleet to these routes in a way that achieves two primary, often competing, goals: minimizing the total travel time for all passengers and maximizing the revenue generated from fares. The final network design must adhere to a detailed set of operational constraints, including fleet size, terminal capacity, route distance limits, vehicle-specific route permissions, and revenue targets. This formulation provides a mathematical framework to guide strategic decision-making for the transit authority.
+
+## 2. Optimization Objectives
+
+The problem is formulated as a multi-objective optimization task. The two primary objectives are:
+
+1.  **Minimize Total Passenger Travel Time ($Z_{time}$):** This represents the aggregate time all passengers spend on the network, including in-vehicle and waiting times. It is a key measure of the network's speed and efficiency from the user's perspective.
+2.  **Maximize Total Network Revenue ($Z_{revenue}$):** This represents the total income generated from passenger fares across the entire network. It is a measure of the network's commercial viability and sustainability.
+
+To find a balanced solution, these two objectives are combined into a single objective function using weighting factors (w_time, w_revenue) that reflect the strategic priorities of the transit authority.
+
+Maximize $Z = (w_{revenue} * Z_{revenue}) - (w_{time} * Z_{time})$
+
+## 3. System Components
+
+The model is defined by its sets, parameters (inputs), and decision variables (outputs).
+
+### 3.1. Sets and Indices
+
+| Symbol | Description |
+| :--- | :--- |
+| $S$ | The set of all potential bus stops or terminals. |
+| $i, j, t \in S$ | Indices representing specific stops or terminals. |
+| $K$ | The set of all pre-defined potential bus routes. |
+| $k \in K$ | An index representing a specific route. |
+| $V$ | The set of all available buses in the fleet. |
+| $v \in V$ | An index representing a specific bus. |
+
+### 3.2. Parameters (Inputs)
+
+Parameters are the known, fixed inputs to the model based on existing data and defined policies.
+
+| Symbol | Description |
+| :--- | :--- |
+| $d_k$ | The total round-trip distance (in km) of potential route $k$. |
+| $t_k$ | The total round-trip travel time (in minutes) of potential route $k$. |
+| $P_{ij}$ | The forecasted passenger demand (passengers/day) from origin $i$ to destination $j$. |
+| $R_{fare}$ | The average revenue generated per passenger trip. |
+| $R_{min\_daily}$ | The minimum required average daily sales (revenue) for a bus to be considered efficiently utilized. |
+| $B_{total}$ | The total number of buses available in the fleet. |
+| $L_{max}$ | The maximum permissible length (in km) for any single route. |
+| $C_{bus}$ | The maximum passenger capacity of a single bus. |
+| $Cap_t$ | The maximum number of buses that can be based at or simultaneously serve terminal $t$. |
+| $A_{vk}$ | A binary parameter: 1 if bus $v$ is **allowed** to be assigned to route $k$; 0 otherwise. |
+| $Origin_{tk}$ | A binary parameter: 1 if route $k$ originates at terminal $t$; 0 otherwise. |
+
+### 3.3. Decision Variables (Outputs)
+
+Decision variables are the outputs that the optimization model will determine.
+
+| Symbol | Description |
+| :--- | :--- |
+| $x_k$ | A binary variable: 1 if route $k$ is selected to be part of the network; 0 otherwise. |
+| $y_{vk}$ | A binary variable: 1 if bus $v$ is assigned to operate on route $k$; 0 otherwise. |
+| $z_{ijk}$ | A binary variable: 1 if passenger demand from origin $i$ to destination $j$ is served by route $k$; 0 otherwise. |
+
+## 4. Mathematical Formulation
+
+The objective function and constraints are formulated as follows:
+
+### 4.1. Objective Function
+
+The goal is to maximize the weighted sum of revenue minus travel time.
+
+**Maximize:**
+$Z = w_{revenue} \left( \sum_{i \in S} \sum_{j \in S} \sum_{k \in K} P_{ij} \cdot z_{ijk} \cdot R_{fare} \right) - w_{time} \left( \sum_{i \in S} \sum_{j \in S} \sum_{k \in K} P_{ij} \cdot z_{ijk} \cdot t_k \right)$
+
+### 4.2. Constraints
+
+The constraints define the rules and limitations within which the optimal solution must exist.
+
+#### **Operational Constraints**
+
+1.  **Fleet Size:** The total number of assigned buses cannot exceed the total available fleet.
+    > $\sum_{v \in V} \sum_{k \in K} y_{vk} \le B_{total}$
+
+2.  **Route Distance Limits:** A route can only be selected if its length is within the maximum allowed distance.
+    > $d_k \cdot x_k \le L_{max} \quad \forall k \in K$
+
+3.  **Vehicle Average Daily Sales:** The total revenue on a route must justify the number of buses assigned to it based on a minimum daily sales target.
+    > $\sum_{i \in S} \sum_{j \in S} P_{ij} \cdot z_{ijk} \cdot R_{fare} \ge \left( \sum_{v \in V} y_{vk} \right) \cdot R_{min\_daily} \quad \forall k \in K$
+
+4.  **Terminal Capacity:** The number of buses originating from a terminal must not exceed its capacity.
+    > $\sum_{v \in V} \sum_{k \in K} y_{vk} \cdot Origin_{tk} \le Cap_t \quad \forall t \in S$
+
+#### **Assignment and System Logic Constraints**
+
+5.  **Allowed Route Assignment:** A bus can only be assigned to a route for which it has permission.
+    > $y_{vk} \le A_{vk} \quad \forall v \in V, \forall k \in K$
+
+6.  **Bus Assignment to Active Routes:** A bus can only be assigned to a route that is selected for operation.
+    > $y_{vk} \le x_k \quad \forall v \in V, \forall k \in K$
+
+7.  **Single Assignment per Bus:** Each bus can be assigned to at most one route.
+    > $\sum_{k \in K} y_{vk} \le 1 \quad \forall v \in V$
+
+8.  **Demand Fulfillment:** All passenger demand must be served by exactly one selected route.
+    > $\sum_{k \in K} z_{ijk} = 1 \quad \forall (i, j) \text{ where } P_{ij} > 0$
+    > $z_{ijk} \le x_k \quad \forall i,j \in S, \forall k \in K$
+
+9.  **Passenger Capacity on Route:** The total number of passengers on a route cannot exceed the combined capacity of the buses assigned to it.
+    > $\sum_{i \in S} \sum_{j \in S} P_{ij} \cdot z_{ijk} \le \left( \sum_{v \in V} y_{vk} \right) \cdot C_{bus} \quad \forall k \in K$
+
+
+
+
+### **The Complete Mathematical Model**
+
+**Objective Function:**
+
+Maximize:
+$Z = w_{revenue} \left( \sum_{i \in S} \sum_{j \in S} \sum_{k \in K} P_{ij} \cdot z_{ijk} \cdot R_{fare} \right) - w_{time} \left( \sum_{i \in S} \sum_{j \in S} \sum_{k \in K} P_{ij} \cdot z_{ijk} \cdot t_k \right)$
+
+**Subject to:**
+
+$\sum_{v \in V} \sum_{k \in K} y_{vk} \le B_{total}$ **Fleet Size:**
+
+$d_k \cdot x_k \le L_{max} \quad \forall k \in K$ **Route Distance Limits:**
+
+$\sum_{i \in S} \sum_{j \in S} P_{ij} \cdot z_{ijk} \cdot R_{fare} \ge \left( \sum_{v \in V} y_{vk} \right) \cdot R_{min\_daily} \quad \forall k \in K$ **Vehicle Average Daily Sales:**
+
+$\sum_{v \in V} \sum_{k \in K} y_{vk} \cdot Origin_{tk} \le Cap_t \quad \forall t \in S$ **Terminal Capacity:**
+
+$y_{vk} \le A_{vk} \quad \forall v \in V, \forall k \in K$ **Allowed Route Assignment:**
+
+$y_{vk} \le x_k \quad \forall v \in V, \forall k \in K$ **Bus Assignment to Active Routes:**
+
+$\sum_{k \in K} y_{vk} \le 1 \quad \forall v \in V$ **Single Assignment per Bus:**
+
+$\sum_{k \in K} z_{ijk} = 1 \quad \forall (i, j) \text{ where } P_{ij} > 0$ **Demand Fulfillment:**
+
+$z_{ijk} \le x_k \quad \forall i,j \in S, \forall k \in K$
+
+$\sum_{i \in S} \sum_{j \in S} P_{ij} \cdot z_{ijk} \le \left( \sum_{v \in V} y_{vk} \right) \cdot C_{bus} \quad \forall k \in K$ **Passenger Capacity on Route:**
+
+**Where:**
+
+*   $x_k \in \{0, 1\}$
+*   $y_{vk} \in \{0, 1\}$
+*   $z_{ijk} \in \{0, 1\}$

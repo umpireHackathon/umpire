@@ -1,13 +1,11 @@
 #!/usr/bin/python3
-"""Renders amenities info"""
-from backend.dev_flask.views import app_views
+"""Renders vehicles info"""
 
+from api.v1.views import app_views
 from backend.models import storage
 from backend.models import Vehicle
-
 from flask import jsonify, request
 from werkzeug.exceptions import NotFound, MethodNotAllowed, BadRequest
-
 from .commons import (fetch_data, fetch_data_id, fetch_process,
                       reach_endpoint, allows)
 
@@ -15,16 +13,17 @@ from .commons import (fetch_data, fetch_data_id, fetch_process,
 def get_vehicle(vehicle_id=None):
     """Returns the vehicle using the given id.
     """
-    vehicles = fetch_data(Vehicle)
-    if not vehicles:
-        return jsonify(
-            {"error": "No vehicles found"}), 404
 
-    if vehicle_id:
-        results = [v.to_dict() for v in vehicles if v.id == vehicle_id]
-    else:
+    if not vehicle_id:
+        vehicles = fetch_data(Vehicle)
+        if not vehicles:
+            return jsonify({"error": "No vehicles found"}), 404
         results = [v.to_dict() for v in vehicles]
-
+    else:
+        vehicle = fetch_data_id(Vehicle, vehicle_id)
+        if not vehicle:
+            return jsonify({"error": "No vehicle found"}), 404
+        results = vehicle.to_dict()
     return jsonify(results)
 
 def add_vehicle(vehicle_id=None):
