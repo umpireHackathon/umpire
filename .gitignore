@@ -138,7 +138,6 @@ celerybeat.pid
 .env
 .envrc
 .venv
-.venv_or
 env/
 venv/
 ENV/
@@ -220,14 +219,6 @@ cython_debug/
 *.log
 *.hprof
 *.dSYM
-
-# Ignore secrets folder and all its contents
-.secrets/
-temp.txt
-
-data/uploads/
-data/data_src
-data/modeling/*.tex
 
 # IntelliJ IDEA
 .idea/

@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-"""Renders routes of Accra info"""
+"""Renders amenities info"""
+from backend.dev_flask.views import app_views
 
-from api.v1.views import app_views
 from backend.models import storage
 from backend.models import Route
+
 from flask import jsonify, request
 from werkzeug.exceptions import NotFound, MethodNotAllowed, BadRequest
-from .commons import (fetch_data, fetch_process,
+
+from .commons import (fetch_data, fetch_data_id, fetch_process,
                       reach_endpoint, allows)
 
 

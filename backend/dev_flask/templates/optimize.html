@@ -1,11 +1,7 @@
 {% extends "base.html" %}
 {% block head %}
    <link rel="stylesheet" href="{{ url_for('static', filename='css/optimization.css') }}">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- DataTables CSS & JS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
 {% endblock %}
 {% block leftContentTasks %}
     <h2>Tasks</h2>
@@ -19,65 +15,62 @@
 {% block content %}
     <div class="optimize-container" style="overflow-y: scroll; height: 100vh; padding: 20px; box-sizing: border-box;">
 
-        <h2>Route Optimization for {{ optimizationData.day | capitalize }}</h2>
-
+        <h2>Route Optimization</h2>
+        
         {% if not route_optimized %}
             <div class="optimize-form" style="margin-right: 10px;">
-                <!-- <a href="#" class="btn add_optimization_details">Cancel</a> -->
-                <div class="optimization-form" id="optimization-form">
+                <a href="#" class="btn add_optimization_details">Add Details</a>
+                <div class="optimization-form" style="display: none;">
                     <br>
-                    <div style="margin-top: 10px; align-items: left;">
-                        <div class="upload-form" style="margin-left: 10px;">
-                            <p id="uploadResult"></p>
-                            <div id="uploadStats">
-                                {% if optimizationData.stats %}
-                                    
-                                    <h2 style="height: 50px; background-color: #ccc;">Descriptive Statistics:</h2>
-                                    <div style="overflow: auto; max-height: 500px; margin-bottom: 5px;">
-                                        {{ optimizationData.stats[0] | safe }}
-                                    </div>
+                    <form action="{{ url_for('optimized_route') }}" method="post">
+                        <button type="submit" class="btn" style="margin-top: 10px;">Optimize</button>
+                        <div style="margin-top: 10px; align-items: left;">
+                        {% set headers = ["", "Vehicle", "Daily Sales", "Allowed routes", "Capacity",  "Predicted demand", "Predicted stops", "Optimal assigned routes", "Optimal targets"] %}
+                        <!-- headers = ["", "Vehicle", "Capacity", "Daily Sales", "Allowed routes", "Predicted demand", "Predicted stops", "Optimal assigned routes", "Optimal targets"]     -->
+                        <div class="optimization-table" style="margin-left: 10px;">
+                                <table>
+                                    <!-- header -->
 
-                                    <div style="margin-top: 10px;">
-                                        <h2 style="height: 50px; background-color: #ccc;">Vehicle Data:</h2>
-                                        <div style="overflow: auto; max-height: 500px;">
-                                            
-                                            <div id="vehicle-table-wrapper">
-                                                {{ optimizationData.stats[1] | safe }}
-                                            </div>
-                                        </div>
-                                {% else %}
-                                    <p>No stats available.</p>
-                                {% endif %}
+                                    {% set num_columns = 9 %}
+                                    <tr>
+                                        
+                                        {% for col in headers %}
+                                            <th>{{ col }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr>
+                                        {% for col in ["", "", "", "", "", "", "", "travel time", "revenue"] %}
+                                            <th>{{ col }}</th>
+                                        {% endfor %}
+                                    </tr> <!-- End header -->
+
+                                    {% for rw in range(10) %}
+                                    <tr>
+                                        <td>{{ optimizationData.day }}</td>
+                                        {% for i in range(1, headers|length) %}
+                                            <td class="input-cell">
+                                                {% if i == 1 %}
+                                                    <input id="{{ optimizationData.day|lower }}" class="vehicle-input" type="text" name="vehicle_{{ optimizationData.day|lower }}" placeholder="{{ optimizationData.vehicles[0].vehicle_number }}" required >
+                                                {% elif i == 2 or i == 3 %}
+                                                    <input id="{{ optimizationData.day|lower }}_{{ headers[i]|lower }}" class="{{ headers[i]|lower }}" type="text" name="{{ optimizationData.day|lower }}_{{ headers[i]|lower }}">
+                                                {% else %}
+                                                    <input id="{{ optimizationData.day|lower }}_{{ headers[i]|lower }}" class="read-only {{ headers[i]|lower }}" type="text" name="{{ optimizationData.day|lower }}_{{ headers[i]|lower }}" readonly>
+                                                {% endif %}
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </table>
                             </div>
-                            <!-- <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
-                                <p><input type="file" name="file" id="fileInput" required></p>
-                                <p><button id="uploadButton" type="button">Upload</button></p>
-                            </form> -->
-
-
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 10px; background-color: #ccc;">
-                            <button type="submit" class="btn" style="background-color: rgb(156, 225, 246);">Optimize</button>
-                            <div style="padding: 0 10px; margin-bottom: 10px; ">
-                                <form id="uploadForm" enctype="multipart/form-data">
-                                    <div style="display: flex; flex-direction: column;">
-                                        <input type="file" id="file" name="file" accept=".csv" required />
-                                        <input type="number" id="numVehicles-upload" name="numVehicles" placeholder="number of vehicles" required />
-                                        <button type="submit">Upload</button>
-                                    </div>
-
-                                </form>                               
+                            <div style="margin-left: 0; display: flex; justify-content: flex-start; align-items: center; gap: 10px;">
+                                <button type="button" class="btn add-row" style="margin-top: 10px;" onclick='addRow("{{ optimizationData.day|safe }}", "{{ optimizationData.vehicles[0].vehicle_number|safe }}", `{{ headers|tojson }}`)'>+</button>
+                                <button type="button" class="btn remove-row" style="margin-top: 10px;" onclick="removeRow(this)">-</button>
+                                <button type="button" class="btn add-vehicles" style="margin-top: 10px;" onclick='addVehicles({{ optimizationData|tojson }}, {{ headers|tojson }})'>>></button>
                             </div>
-                            <form id="uploadForm-db" class="uploadForm" enctype="multipart/form-data">
-                                <input type="number" id="numVehicles" name="numVehicles" placeholder="number of vehicles" required />
-                                <div style="display: flex; flex-direction: column;">
-                                    <button type="submit" class="btn loadFromDB" id="loadFromDB">Generate from database</button>
-                                    <button type="button" class="btn" id="saveToDB">Save</button>
-                                </div>
-                            </form>
                         </div>
-                    </div>
+                    </form>
                 </div>
+
             </div>
         {% else %}
             <div class="map-container">
@@ -89,7 +82,146 @@
 {% endblock %}
 
 {% block scripts %}
+    {% if route_optimized %}
+        <script src="{{ url_for('static', filename='js/optimize.js') }}"></script>
+    {% endif %}
+    <script>
+        document.querySelector('.add_optimization_details').addEventListener('click', function(event) {
+            event.preventDefault();
 
-<script src="{{ url_for('static', filename='js/optimize.js') }}"></script>
+            if (document.querySelector('.add_optimization_details').innerHTML == 'Cancel') {
+                document.querySelector('.optimization-form').style.display = 'none';
+                document.querySelector('.add_optimization_details').innerHTML = 'Add Details';
+                document.querySelector('.optimization-form').querySelectorAll('input').forEach(function(input) {
+                    input.value = '';
+                });
+                document.querySelectorAll('.input-cell').forEach(function(cell) {
+                    cell.querySelector('input').value = '';
+                });
+                return;
+            }
+            document.querySelector('.add_optimization_details').innerHTML = 'Cancel';
+            document.querySelector('.optimization-form').style.display = 'block';
 
+        });
+
+        function addRow(day, placeholder, headers) {
+            // If headers is a string, parse it to an array
+            if (typeof headers === 'string') {
+                headers = headers.replace(/[\[\]']/g, '').split(',').map(h => h.trim());
+            }
+            const num_headers = headers.length; // +1 for the day column
+            const table = document.querySelector('.optimization-table table');
+            const newRow = document.createElement('tr');
+            let rowHtml = '';
+            // rowHtml += `<td>${day}</td>`;
+            const newTD = document.createElement('td');
+            newTD.textContent = day;
+            newRow.appendChild(newTD);
+            for (let i = 1; i < num_headers; i++) {
+                if (i === 1) {
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.name = `vehicle_${day}`;
+                    input.placeholder = placeholder;
+                    input.required = true;
+                    const cell = document.createElement('td');
+                    cell.className = 'input-cell';
+                    cell.appendChild(input);
+                    newRow.appendChild(cell);
+                } else if (i === 2 || i === 3) {
+                    const input = document.createElement('input');
+                    input.id = `${day}_${headers[i]}`;
+                    input.type = 'text';
+                    input.name = `${day}_${headers[i]}`;
+                    const cell = document.createElement('td');
+                    cell.className = 'input-cell';
+                    cell.appendChild(input);
+                    newRow.appendChild(cell);
+                } else {
+                    const input = document.createElement('input');
+                    input.id = `${day}_${headers[i]}`;
+                    input.className = 'read-only';
+                    input.type = 'text';
+                    input.name = `${day}_${headers[i]}`;
+                    input.readOnly = true;
+                    const cell = document.createElement('td');
+                    cell.className = 'input-cell';
+                    cell.appendChild(input);
+                    newRow.appendChild(cell);
+                }
+            }
+
+            table.appendChild(newRow);
+        }
+           
+        function removeRow() {
+
+            const table = document.querySelector('.optimization-table table');
+            const rows = table.querySelectorAll('tr');
+            if (rows.length == 3) {
+                alert("Cannot remove the last row.");
+                return;
+            }
+
+            table.deleteRow(rows.length - 1);
+        }
+
+    
+        // submit the form when the optimize button is clicked
+        document.querySelector('.optimization-form form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the default form submission
+
+            // Get the form data
+            const formData = new FormData(event.target);
+
+            // Send the form data to the server
+            fetch('/optimize', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the server
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+        function addVehicles(optimizationData, headers) {
+            if (optimizationData === undefined || headers === undefined ) {
+                console.error("Optimization data or headers are not defined.");
+                return;
+            } else if (optimizationData.length === 0 || headers.length === 0) {
+                console.error("Optimization data or headers are empty.");
+                return;
+            }
+
+            const vehicles = document.querySelectorAll('.vehicle-input');
+            vehicles.forEach(vehicle => {
+                const vehicleNumber = vehicle.value.trim().toUpperCase();
+                const currentRow = vehicle.closest('tr');
+                if (vehicleNumber) {
+                    // inputs to update in a row
+                    const vehicleCapacity = document.querySelector(`#${vehicle.id}_capacity`);
+                    const vehiclePredictedDemand = document.querySelector(`#${vehicle.id}_predicted_demand`);
+                    const vehiclePredictedStops = document.querySelector(`#${vehicle.id}_predicted_stops`);
+
+                    if (vehicleCapacity) {
+                        vehicleCapacity.value = optimizationData.vehicles.find(v => v.vehicle_number.toUpperCase() === vehicleNumber)?.capacity || '';
+                        // update the vehicle capacity cell in currentRow
+                        
+                        const capacityCell = currentRow.querySelector('.capacity');
+                        if (capacityCell) {
+                            capacityCell.textContent = vehicleCapacity.value;
+                        }
+                    }
+                    // TODO: update the vehicle predicted demand and stops
+
+                }
+            });
+        }
+
+    </script>
 {% endblock %}

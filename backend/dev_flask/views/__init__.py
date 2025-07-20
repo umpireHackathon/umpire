@@ -11,10 +11,11 @@ from backend.dev_flask.views.bus_stop import *
 from backend.dev_flask.views.terminal import *
 from backend.dev_flask.views.route import *
 from backend.dev_flask.views.vehicle import *
-from backend.dev_flask.views.maps import *
-
 
 # Prediction views
 from backend.dev_flask.views.demand_prediction import *
 from backend.dev_flask.views.travel_time_prediction import *
 from backend.dev_flask.views.terminal_prediction import *
+
+# Optimization views
+from backend.dev_flask.views.optimization import *
