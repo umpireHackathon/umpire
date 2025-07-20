@@ -46,7 +46,7 @@
                         <th>Route Choice</th>
                         <th>Capacity</th>
                         <th>Predicted Demand</th>
-                        <th>Predicted Stops</th>
+                        <th>Predicted Travel Time</th>
                         <th>Optimal Routes</th>
                         <th>Optimal Targets</th>
                     </tr>
@@ -60,6 +60,7 @@
         <div class="controls">
             <button class="btn btn-add" onclick="addRow()">+ Add Row</button>
             <button class="btn btn-remove" onclick="removeRow()" id="removeBtn">- Remove Row</button>
+            <button class="btn btn-opt" onclick="optimize()" id="optbtn">Optimize Route</button>
             <span id="rowCount">Rows: 0</span>
         </div>
     </div>
@@ -72,7 +73,10 @@
     {% endif %}
 
     <script>
+        // get the base URL from the environment variable
+        const BASE_URL = "{{ BASE_URL }}"; // e.g., "/api/v1"
         let rowCounter = 0;
+        let tableReady = false; // Flag to check if the table is ready for data
         
         // Initialize table with some empty rows
         document.addEventListener('DOMContentLoaded', function() {
@@ -119,27 +123,15 @@
                             const fields = line.split(',').map(field => field.trim().replace(/^["']|["']$/g, ''));
                             const vehicleNumber = fields[0];
                             const vehicleSales = fields[1];
-                            const routeChoice = fields.slice(2).join(';'); 
-                            // const capacity = get_capacity(vehicleNumber); // from database
-                            // const predictedDemand = get_predicted_demand(vehicleNumber, vehicleSales, routeChoice, capacity); // from ml model endpoint
-                            // const predictedStops = get_predicted_stops(vehicleNumber, vehicleSales, routeChoice, capacity); // from ml model endpoint
+                            const routeChoice = fields.slice(2,-1).join(';');
 
                             if (fields.length >= 3) {
                                 data.push({
                                     vehicleNumber: vehicleNumber,
                                     vehicleSales: vehicleSales,
                                     routeChoice: routeChoice,
-                                    // predictedDemand: predictedDemand,
-                                    // predictedStops: predictedStops
                                 });
                             }
-
-                            get_capacity(vehicleNumber).then(capacity => {
-                                data[i] = {
-                                    ...data[i],
-                                    capacity: capacity
-                                };
-                            });
                         }
                     }
                     
@@ -151,13 +143,15 @@
                     // Populate table
                     populateTable(data);
                     showStatus(`Successfully loaded ${data.length} records from CSV`, 'success');
-                    
+                    // Update capacity, demand, and stops
+                    updateCapacityDemandStops();
+
                 } catch (error) {
                     console.error('Error parsing CSV:', error);
                     showStatus('Error parsing CSV file: ' + error.message, 'error');
                 }
             };
-            
+
             reader.onerror = function() {
                 showStatus('Error reading file', 'error');
             };
@@ -165,25 +159,48 @@
             reader.readAsText(file);
         }
 
+        async function get_route_ids(routeChoice) {
+            // /route/<path:route_nam>/
+
+            // AJAX call to the backend:
+            const response = await fetch(`${BASE_URL}/route/${routeChoice}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            if (!data || !data.route_ids) {
+                throw new Error('Invalid response from server');
+            }
+            return data.route_ids; // Assuming the response contains a 'route_ids' field
+        }
+
         async function get_capacity(vehicleNumber) {
             // AJAX call to your backend:
+            
             body = {
                 vehicle_Number: vehicleNumber
             };
-            const response = await fetch(`/api/vehicle/${vehicleNumber}/capacity`, {
+            const response = await fetch(`${BASE_URL}/vehicle/${vehicleNumber}/capacity`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
             const data = await response.json();
+            
             return data.capacity;
         }
 
-        function get_predicted_demand(vehicleNumber, vehicleSales, routeChoice, capacity) {
+        function get_predicted_demand(routeChoice) {
+
             // Simulate an AJAX call to your ML model endpoint
             /**
-            return fetch(`/api/predict/demand/${vehicleNumber}`, {
+            return fetch(`${BASE_URL}/predict/demand/${vehicleNumber}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -200,11 +217,16 @@
            return Math.floor(Math.random() * 100) + 1; // Random number between 1 and 100 for demonstration
         }
 
-        function get_predicted_stops(vehicleNumber, vehicleSales, routeChoice, capacity) {
-            // Simulate an AJAX call to the ML model endpoint
+        async function get_predicted_travel_time(routeChoice) {
+            // Pass:
+            // route_id (str): The ID of the route for which to predict travel time.
+            // day_name (str): The day of the week for which to predict travel time.
+            // origin (str): The origin location for the travel time prediction.
+            // destination (str): The destination location for the travel time prediction.
 
+            // route_ids = await get_route_ids(routeChoice);
             /**
-            return fetch(`/api/predict/stops/${vehicleNumber}`, {
+            return fetch(`${BASE_URL}/predict/stops/${vehicleNumber}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -236,7 +258,7 @@
             
             // Populate the data
             //      remove column heading (row 0) in the data
-            console.log(data[5]);
+            // console.log(data);
             for (let i = 1; i < data.length; i++) {
                 const row = tableBody.children[i-1];
                 const record = data[i];                
@@ -337,11 +359,12 @@
             statusDiv.textContent = message;
             statusDiv.className = `status-message status-${type}`;
             statusDiv.style.display = 'block';
+            tableReady = true; // Set the flag to true when the table is ready
             
             // Hide after 5 seconds
             setTimeout(() => {
                 statusDiv.style.display = 'none';
-            }, 5000);
+            }, 7000);
         }
         
         // Add some sample functionality for demonstration
@@ -373,6 +396,33 @@
         
         // Initialize controls
         updateControls();
+
+        async function updateCapacityDemandStops() {
+            const tableBody = document.getElementById('tableBody');
+            const rows = tableBody.children;
+            
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const vehicleNumber = row.children[1].querySelector('input').value;
+                const vehicleSales = row.children[2].querySelector('input').value;
+                const routeChoice = row.children[3].querySelector('input').value;
+                
+                // Get capacity from database
+                get_capacity(vehicleNumber).then(capacity => {
+                    row.children[4].querySelector('input').value = capacity;
+                    
+                // Get predicted demand and travel time
+                const predictedDemand = get_predicted_demand(routeChoice);
+                const predictedStops = get_predicted_travel_time(routeChoice);
+                
+                row.children[5].querySelector('input').value = predictedDemand;
+                row.children[6].querySelector('input').value = predictedStops;
+                });
+            }
+        };
+        // test capacity
+        updateCapacityDemandStops();
+
     </script>
 
 {% endblock %}

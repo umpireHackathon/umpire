@@ -23,7 +23,7 @@ class Vehicle(BaseModel, Base):
         longitude = Column(Float, nullable=True)
         capacity = Column(Integer, nullable=False)
         assigned = Column(Boolean, default=False, nullable=False)
-        icon = Column(String(255), nullable=False, default=src_vehicle_icon)
+        icon = Column(String(255), nullable=True, default=src_vehicle_icon)
         # Relationship to Route
         routes = relationship("Route", secondary='routed_vehicles', back_populates="vehicles")
 

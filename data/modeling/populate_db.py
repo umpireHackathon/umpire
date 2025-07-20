@@ -87,15 +87,16 @@ def load_agency():
         - routes
         - terminals
     Expected CSV format:
-        - id, name, agency_url
+        - agency_id, name, agency_url
     Required columns:
-        - [name, agency_url]
+        - [agency_id, name, agency_url]
     Expected schema for db:
         name VARCHAR(128) NOT NULL,
         agency_url VARCHAR(256) NOT NULL,
     """
     if os.path.exists(src_agency):
         df_agency = pd.read_csv(src_agency)
+        print(f"Agency source file found: {df_agency.head()}")
         df_routes = pd.read_csv(src_route)
         df_terminals = pd.read_csv(src_terminal)
         df_agency_terminals = pd.read_csv(src_agency_terminal)
@@ -108,7 +109,7 @@ def load_agency():
                                                                           i, ['name', 'latitude', 'longitude'],
                                                                           df_terminals[['stop_id', 'name', 'latitude', 'longitude']], 'stop_id', Terminal) for i in x]) 
         # Check if required columns are present
-        required_columns = ['name', 'agency_url']
+        required_columns = ['agency_id', 'name', 'agency_url']
         check_columns(df_agency, required_columns)
 
         # df_agency = df_agency[required_columns]  # Keep only required columns
@@ -122,6 +123,7 @@ def load_agency():
             # get associated terminals
             terminals = df_agency_terminals[df_agency_terminals['agency_id'] == row['agency_id']]['stop_ids'].values[0]
 
+            row['agency_id'] = str(row['agency_id'])
             agency = storage.get_or_create(Agency, **row[required_columns].to_dict())
 
             if agency:
@@ -168,7 +170,7 @@ def load_routes():
     Expected CSV format:
      - route_id,name,distance_km
     Required columns for db:
-     - [name, distance_km]
+     - [route_id, name, distance_km]
     Expected schema for db:
         name VARCHAR(128) NOT NULL,
         distance_km DOUBLE PRECISION NOT NULL,
@@ -176,7 +178,7 @@ def load_routes():
     if os.path.exists(src_route):
         df_route = pd.read_csv(src_route)
         # Check if required columns are present
-        required_columns = ['name', 'distance_km']
+        required_columns = ['route_id','name', 'distance_km']
         check_columns(df_route, required_columns)
 
         df_route = df_route[required_columns]  # Keep only required columns
@@ -223,6 +225,7 @@ def load_terminals():
                 if suburb_obj:
                     row['suburb_id'] = suburb_obj.id
             # ---------------------------------------
+            row.rename({'stop_id': 'terminal_id'}, inplace=True)
             terminal = Terminal(**row.to_dict())
             terminal.save()
         print(f"Terminals loaded: {len(df_terminal)}")

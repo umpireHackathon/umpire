@@ -18,10 +18,11 @@ class Terminal(BaseModel, Base):
     """ The terminal class, contains terminal ID and name """
     if STORAGE_TYPE == "db":
         __tablename__ = 'terminals'
+        terminal_id = Column(String(20), nullable=True)
         name = Column(String(128), nullable=False)
         latitude = Column(Float, nullable=False)
         longitude = Column(Float, nullable=False)
-        suburb_id = Column(Integer, ForeignKey('suburbs.id'), nullable=False)
+        suburb_id = Column(Integer, ForeignKey('suburbs.id'), nullable=True)
 
         # Relationship to Suburb
         suburb = relationship("Suburb", back_populates="terminals")
@@ -31,6 +32,7 @@ class Terminal(BaseModel, Base):
         agencies = relationship("Agency", secondary='agency_terminals', back_populates="terminals")
 
     else:
+        terminal_id = ""
         name = ""
         latitude = 0.0
         longitude = 0.0

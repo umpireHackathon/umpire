@@ -1,50 +1,50 @@
-vehicle_number,sales,preferred_routes
-GC 5983-21,211,Abeka Market station to Kaneshie Mkt Cmplx
-VR 1619-20,389,Abeka lapaz to Ashalaja
-WR 2351-15,120,"Aunti Eku Pallas Town to Abeka lapaz, Ashalaja to Abeka lapaz, Sakumono station to Abeka lapaz"
-WR 6012-25,153,"Abeka lapaz to Agbogbloshie Station No. 2, Agbogbloshie Station No. 2 to Abeka lapaz, Sakumono station to Abeka lapaz"
-NR 5863-22,439,"Sakumono station to Abeka lapaz, Aunti Eku Pallas Town to Abeka lapaz"
-GH 5695-24,127,"Ashalaja to Abeka lapaz, Abeka Market station to Rawlings Park"
-VD 8366-23,287,"Asofan Station to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2, Abeka Market station to Rawlings Park"
-AC 4366-20,197,Abeka Market station to Kaneshie Mkt Cmplx
-AP 4731-21,244,Abeka lapaz to Asofan Station
-CR 5457-21,422,Abeka lapaz to Sakumono station
-GW 8464-22,234,"Abeka Market station to Kaneshie Mkt Cmplx, Ashiaman Station to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2"
-GE 3812-21,133,Agbogbloshie Station No. 2 to Abeka lapaz
-AP 5108-18,123,"Abeka lapaz to Sakumono station, Sakumono station to Abeka lapaz"
-GW 6504-20,379,"Asofan Station to Abeka lapaz, Sakumono station to Abeka lapaz, Ashalaja to Abeka lapaz"
-GE 8595-15,189,Abeka lapaz to Asofan Station
-CR 5129-25,246,Ashalaja to Abeka lapaz
-WR 7992-20,397,Asofan Station to Abeka lapaz
-GH 7411-17,439,"Ashalaja to Abeka lapaz, Abeka lapaz to Sakumono station, Asofan Station to Abeka lapaz"
-BT 9665-21,249,Abeka lapaz to Asofan Station
-WR 4248-25,316,"Abeka Market station to Kaneshie Mkt Cmplx, Abeka Market station to Rawlings Park, Agbogbloshie Station No. 2 to Abeka lapaz"
-GB 1767-18,174,Ashalaja to Abeka lapaz
-WR 9336-21,364,"Agbogbloshie Station No. 2 to Abeka lapaz, Abeka Market station to Rawlings Park"
-GX 7567-25,327,"Abeka lapaz to Ashalaja, Abeka lapaz to Asofan Station"
-GC 1092-19,394,Abeka lapaz to Sakumono station
-AW 3988-24,328,Ashiaman Station to Abeka lapaz
-CR 6116-25,394,"Ashalaja to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2"
-GN 6006-24,283,"Abeka lapaz to Ashalaja, Ashiaman Station to Abeka lapaz"
-GE 5208-17,249,"Ashalaja to Abeka lapaz, Agbogbloshie Station No. 2 to Abeka lapaz, Asofan Station to Abeka lapaz"
-CR 5776-15,366,"Aunti Eku Pallas Town to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2, Abeka lapaz to Ashalaja"
-NR 8144-16,287,"Agbogbloshie Station No. 2 to Abeka lapaz, Ashalaja to Abeka lapaz"
-AC 4549-21,112,Ashalaja to Abeka lapaz
-GT 5410-18,244,"Agbogbloshie Station No. 2 to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2, Abeka lapaz to Ashalaja"
-GC 6113-20,330,"Abeka Market station to Kaneshie Mkt Cmplx, Ashalaja to Abeka lapaz, Abeka lapaz to Ashalaja"
-GG 8665-15,362,"Agbogbloshie Station No. 2 to Abeka lapaz, Ashiaman Station to Abeka lapaz"
-GG 4603-24,370,Abeka Market station to Kaneshie Mkt Cmplx
-NR 7388-17,106,"Abeka lapaz to Agbogbloshie Station No. 2, Aunti Eku Pallas Town to Abeka lapaz, Agbogbloshie Station No. 2 to Abeka lapaz"
-AC 6872-19,178,Agbogbloshie Station No. 2 to Abeka lapaz
-GG 8756-25,207,"Asofan Station to Abeka lapaz, Abeka Market station to Rawlings Park, Sakumono station to Abeka lapaz"
-GT 4541-20,378,"Ashalaja to Abeka lapaz, Abeka Market station to Kaneshie Mkt Cmplx"
-GW 2226-17,349,Ashalaja to Abeka lapaz
-GN 9330-18,377,"Asofan Station to Abeka lapaz, Ashiaman Station to Abeka lapaz"
-CR 1246-15,322,Ashiaman Station to Abeka lapaz
-CR 8214-19,326,"Abeka Market station to Kaneshie Mkt Cmplx, Ashalaja to Abeka lapaz, Asofan Station to Abeka lapaz"
-AW 1060-19,381,"Abeka lapaz to Agbogbloshie Station No. 2, Aunti Eku Pallas Town to Abeka lapaz"
-WT 7177-23,195,"Ashiaman Station to Abeka lapaz, Abeka lapaz to Sakumono station, Agbogbloshie Station No. 2 to Abeka lapaz"
-GH 8526-22,330,"Ashiaman Station to Abeka lapaz, Abeka lapaz to Asofan Station, Abeka lapaz to Ashalaja"
-ES 7872-25,110,Abeka Market station to Kaneshie Mkt Cmplx
-GS 8143-18,243,"Abeka lapaz to Agbogbloshie Station No. 2, Agbogbloshie Station No. 2 to Abeka lapaz"
-GG 7100-20,380,"Sakumono station to Abeka lapaz, Ashalaja to Abeka lapaz"
+vehicle_number,sales,preferred_routes,capacity
+GC 5983-21,211,Abeka Market station to Kaneshie Mkt Cmplx,
+VR 1619-20,389,Abeka lapaz to Ashalaja,
+WR 2351-15,120,"Aunti Eku Pallas Town to Abeka lapaz, Ashalaja to Abeka lapaz, Sakumono station to Abeka lapaz",
+WR 6012-25,153,"Abeka lapaz to Agbogbloshie Station No. 2, Agbogbloshie Station No. 2 to Abeka lapaz, Sakumono station to Abeka lapaz",
+NR 5863-22,439,"Sakumono station to Abeka lapaz, Aunti Eku Pallas Town to Abeka lapaz",
+GH 5695-24,127,"Ashalaja to Abeka lapaz, Abeka Market station to Rawlings Park",
+VD 8366-23,287,"Asofan Station to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2, Abeka Market station to Rawlings Park",
+AC 4366-20,197,Abeka Market station to Kaneshie Mkt Cmplx,
+AP 4731-21,244,Abeka lapaz to Asofan Station,
+CR 5457-21,422,Abeka lapaz to Sakumono station,
+GW 8464-22,234,"Abeka Market station to Kaneshie Mkt Cmplx, Ashiaman Station to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2",
+GE 3812-21,133,Agbogbloshie Station No. 2 to Abeka lapaz,
+AP 5108-18,123,"Abeka lapaz to Sakumono station, Sakumono station to Abeka lapaz",
+GW 6504-20,379,"Asofan Station to Abeka lapaz, Sakumono station to Abeka lapaz, Ashalaja to Abeka lapaz",
+GE 8595-15,189,Abeka lapaz to Asofan Station,
+CR 5129-25,246,Ashalaja to Abeka lapaz,
+WR 7992-20,397,Asofan Station to Abeka lapaz,
+GH 7411-17,439,"Ashalaja to Abeka lapaz, Abeka lapaz to Sakumono station, Asofan Station to Abeka lapaz",
+BT 9665-21,249,Abeka lapaz to Asofan Station,
+WR 4248-25,316,"Abeka Market station to Kaneshie Mkt Cmplx, Abeka Market station to Rawlings Park, Agbogbloshie Station No. 2 to Abeka lapaz",
+GB 1767-18,174,Ashalaja to Abeka lapaz,
+WR 9336-21,364,"Agbogbloshie Station No. 2 to Abeka lapaz, Abeka Market station to Rawlings Park",
+GX 7567-25,327,"Abeka lapaz to Ashalaja, Abeka lapaz to Asofan Station",
+GC 1092-19,394,Abeka lapaz to Sakumono station,
+AW 3988-24,328,Ashiaman Station to Abeka lapaz,
+CR 6116-25,394,"Ashalaja to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2",
+GN 6006-24,283,"Abeka lapaz to Ashalaja, Ashiaman Station to Abeka lapaz",
+GE 5208-17,249,"Ashalaja to Abeka lapaz, Agbogbloshie Station No. 2 to Abeka lapaz, Asofan Station to Abeka lapaz",
+CR 5776-15,366,"Aunti Eku Pallas Town to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2, Abeka lapaz to Ashalaja",
+NR 8144-16,287,"Agbogbloshie Station No. 2 to Abeka lapaz, Ashalaja to Abeka lapaz",
+AC 4549-21,112,Ashalaja to Abeka lapaz,
+GT 5410-18,244,"Agbogbloshie Station No. 2 to Abeka lapaz, Abeka lapaz to Agbogbloshie Station No. 2, Abeka lapaz to Ashalaja",
+GC 6113-20,330,"Abeka Market station to Kaneshie Mkt Cmplx, Ashalaja to Abeka lapaz, Abeka lapaz to Ashalaja",
+GG 8665-15,362,"Agbogbloshie Station No. 2 to Abeka lapaz, Ashiaman Station to Abeka lapaz",
+GG 4603-24,370,Abeka Market station to Kaneshie Mkt Cmplx,
+NR 7388-17,106,"Abeka lapaz to Agbogbloshie Station No. 2, Aunti Eku Pallas Town to Abeka lapaz, Agbogbloshie Station No. 2 to Abeka lapaz",
+AC 6872-19,178,Agbogbloshie Station No. 2 to Abeka lapaz,
+GG 8756-25,207,"Asofan Station to Abeka lapaz, Abeka Market station to Rawlings Park, Sakumono station to Abeka lapaz",
+GT 4541-20,378,"Ashalaja to Abeka lapaz, Abeka Market station to Kaneshie Mkt Cmplx",
+GW 2226-17,349,Ashalaja to Abeka lapaz,
+GN 9330-18,377,"Asofan Station to Abeka lapaz, Ashiaman Station to Abeka lapaz",
+CR 1246-15,322,Ashiaman Station to Abeka lapaz,
+CR 8214-19,326,"Abeka Market station to Kaneshie Mkt Cmplx, Ashalaja to Abeka lapaz, Asofan Station to Abeka lapaz",
+AW 1060-19,381,"Abeka lapaz to Agbogbloshie Station No. 2, Aunti Eku Pallas Town to Abeka lapaz",
+WT 7177-23,195,"Ashiaman Station to Abeka lapaz, Abeka lapaz to Sakumono station, Agbogbloshie Station No. 2 to Abeka lapaz",
+GH 8526-22,330,"Ashiaman Station to Abeka lapaz, Abeka lapaz to Asofan Station, Abeka lapaz to Ashalaja",
+ES 7872-25,110,Abeka Market station to Kaneshie Mkt Cmplx,
+GS 8143-18,243,"Abeka lapaz to Agbogbloshie Station No. 2, Agbogbloshie Station No. 2 to Abeka lapaz",
+GG 7100-20,380,"Sakumono station to Abeka lapaz, Ashalaja to Abeka lapaz",

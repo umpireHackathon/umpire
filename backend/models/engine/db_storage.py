@@ -122,6 +122,12 @@ class DBStorage:
             return self.__session.query(cls).filter_by(**kwargs).all()
         return None
     
+    def get_many_by(self, cls, **kwargs):
+        """ This method returns a list of instances of a class that match the keyword arguments """
+        if cls:
+            return self.__session.query(cls).filter_by(**kwargs).all()
+        return []
+
     def get_one_by(self, cls, **kwargs):
         """ This method returns the first instance of a class that matches the keyword arguments """
         if cls:

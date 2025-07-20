@@ -16,12 +16,17 @@ import requests
 from werkzeug.exceptions import HTTPException
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from backend.dev_flask.views import app_views
-from backend.dev_flask.views.commons import fetch_data_url  # Blueprint registration
+from api.v1.views import app_views
+from api.v1.views.commons import fetch_data_url  # Blueprint registration
 
 # Read environment variables (optional: use dotenv if needed)
 HOST = os.getenv("UMPIRE_HOST", "localhost")
 PORT = int(os.getenv("UMPIRE_FLASK_PORT", 5000))
+BASE_URL = os.getenv("BASE_URL", "/api")
+BSTOPS_URL = BASE_URL + "/bstops"
+TERMINALS_URL = BASE_URL + "/terminals"
+VEHICLES_URL = BASE_URL + "/vehicles"
+ROUTES_URL = BASE_URL + "/routes"
 
 if not HOST or not PORT:
     raise ValueError("UMPIRE_HOST and UMPIRE_FLASK_PORT must be set in the environment or .env file")
@@ -149,12 +154,12 @@ def update_map():
 
     if user_action and user_action == 'show_terminals':
         # Fetch terminals from the API
-        terminals = fetch_data_url('/api/terminals')
-        
-        for terminal in terminals:
-            # Store terminal data for JavaScript access
-            if 'latitude' in terminal and 'longitude' in terminal:
-                terminals_data.append({
+        terminals = fetch_data_url(TERMINALS_URL)
+        if isinstance(terminals, list) and len(terminals) > 0:
+            for terminal in terminals:
+                # Store terminal data for JavaScript access
+                if 'latitude' in terminal and 'longitude' in terminal:
+                    terminals_data.append({
                     'id': terminal['id'],
                     'name': terminal['name'],
                     'latitude': terminal['latitude'],
@@ -178,10 +183,16 @@ def update_map():
                         icon_anchor=(15, 15)  # center the icon
                     )
                 ).add_to(m)
+        else:
+            folium.Marker(
+                location=[user_lat, user_lng],
+                popup="No terminals found",
+                icon=folium.Icon(color='red')
+            ).add_to(m)
 
     if user_action and user_action == 'show_stops':
         # Fetch stops from the API
-        stops = fetch_data_url('/api/bstops')
+        stops = fetch_data_url(BSTOPS_URL)
         for stop in stops:
             # Store stop data for JavaScript access
             stops_data.append({
@@ -276,8 +287,8 @@ def random_position():
 def optimize():
     from datetime import datetime
     try:
-        vehicles = requests.get('http://127.0.0.1:5000/api/vehicles', timeout=5).json()
-        routes = requests.get('http://127.0.0.1:5000/api/routes', timeout=5).json()
+        vehicles = requests.get(f'http://127.0.0.1:5000{VEHICLES_URL}', timeout=5).json()
+        routes = requests.get(f'http://127.0.0.1:5000{ROUTES_URL}', timeout=5).json()
     except Exception as e:
         print(f"Error fetching vehicles: {str(e)}")
         vehicles = []
@@ -285,7 +296,7 @@ def optimize():
     day = datetime.now().strftime("%A").lower()
     data = {"vehicles": vehicles, "routes": routes, "day": day}
     
-    return render_template('optimize.html', optimizationData=data)
+    return render_template('optimize.html', optimizationData=data, BASE_URL=BASE_URL, route_optimized=False)
 
 @app.route('/optimize/route')
 def optimized_route():
