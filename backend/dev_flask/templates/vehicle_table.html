@@ -1,27 +1,194 @@
-{% extends "base.html" %}
-{% block head %}
-   <link rel="stylesheet" href="{{ url_for('static', filename='css/optimization.css') }}">
-
-{% endblock %}
-{% block leftContentTasks %}
-    <h2>Tasks</h2>
-    <ul class="left-menu-tasks">
-        <li><a href="#">Optimized Routes <i class="fa-solid fa-circle-xmark" style="color: red;"></i></a></li>
-    </ul>
-
-{% endblock %}
-
-{% block title %}<h1>Route Allocation to Vehicles</h1>{% endblock %}
-
-{% block content %}
-
-    <div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Data Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
         
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .upload-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 2px dashed #dee2e6;
+        }
+        
+        .upload-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .upload-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .file-info {
+            margin-left: 15px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+        }
+        
+        .editable-input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 4px;
+            font-size: 14px;
+        }
+        
+        .editable-input:focus {
+            outline: 2px solid #007bff;
+            background-color: #fff;
+        }
+        
+        .readonly-input {
+            width: 100%;
+            border: none;
+            background: #f8f9fa;
+            padding: 4px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-add {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-add:hover {
+            background-color: #218838;
+        }
+        
+        .btn-remove {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .btn-remove:hover {
+            background-color: #c82333;
+        }
+        
+        .btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .status-message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .csv-format-info {
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .csv-format-info h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        
+        .csv-format-info code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle Data Management</h1>
         
         <div class="csv-format-info">
             <h3>CSV Format Requirements</h3>
             <p>Your CSV file should have the following columns in order:</p>
-            <!-- <code>Vehicle Number, Vehicle Sales, Route Choice</code> -->
+            <code>Vehicle Number, Vehicle Sales, Route Choice</code>
             <p><strong>Example:</strong></p>
             <code>V001, 15000, r1;r9;r4</code><br>
             <code>V002, 22000, r2;r5;r8</code>
@@ -63,13 +230,6 @@
             <span id="rowCount">Rows: 0</span>
         </div>
     </div>
-
-{% endblock %}
-
-{% block scripts %}
-    {% if route_optimized %}
-        <script src="{{ url_for('static', filename='js/optimize.js') }}"></script>
-    {% endif %}
 
     <script>
         let rowCounter = 0;
@@ -117,29 +277,14 @@
                         if (line) {
                             // Split by comma and clean up each field
                             const fields = line.split(',').map(field => field.trim().replace(/^["']|["']$/g, ''));
-                            const vehicleNumber = fields[0];
-                            const vehicleSales = fields[1];
-                            const routeChoice = fields.slice(2).join(';'); 
-                            // const capacity = get_capacity(vehicleNumber); // from database
-                            // const predictedDemand = get_predicted_demand(vehicleNumber, vehicleSales, routeChoice, capacity); // from ml model endpoint
-                            // const predictedStops = get_predicted_stops(vehicleNumber, vehicleSales, routeChoice, capacity); // from ml model endpoint
-
+                            
                             if (fields.length >= 3) {
                                 data.push({
-                                    vehicleNumber: vehicleNumber,
-                                    vehicleSales: vehicleSales,
-                                    routeChoice: routeChoice,
-                                    // predictedDemand: predictedDemand,
-                                    // predictedStops: predictedStops
+                                    vehicleNumber: fields[0],
+                                    vehicleSales: fields[1],
+                                    routeChoice: fields[2]
                                 });
                             }
-
-                            get_capacity(vehicleNumber).then(capacity => {
-                                data[i] = {
-                                    ...data[i],
-                                    capacity: capacity
-                                };
-                            });
                         }
                     }
                     
@@ -164,70 +309,13 @@
             
             reader.readAsText(file);
         }
-
-        async function get_capacity(vehicleNumber) {
-            // AJAX call to your backend:
-            body = {
-                vehicle_Number: vehicleNumber
-            };
-            const response = await fetch(`/api/vehicle/${vehicleNumber}/capacity`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const data = await response.json();
-            return data.capacity;
-        }
-
-        function get_predicted_demand(vehicleNumber, vehicleSales, routeChoice, capacity) {
-            // Simulate an AJAX call to your ML model endpoint
-            /**
-            return fetch(`/api/predict/demand/${vehicleNumber}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ vehicleSales, routeChoice, capacity })
-            })
-            .then(response => response.json())
-            .then(data => data.predictedDemand)
-            .catch(error => {
-                console.error('Error fetching predicted demand:', error);
-                return 0; // Default value if error occurs
-            });
-            **/
-           return Math.floor(Math.random() * 100) + 1; // Random number between 1 and 100 for demonstration
-        }
-
-        function get_predicted_stops(vehicleNumber, vehicleSales, routeChoice, capacity) {
-            // Simulate an AJAX call to the ML model endpoint
-
-            /**
-            return fetch(`/api/predict/stops/${vehicleNumber}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ vehicleSales, routeChoice, capacity })
-            })
-            .then(response => response.json())
-            .then(data => data.predictedStops)
-            .catch(error => {
-                console.error('Error fetching predicted stops:', error);
-                return 0; // Default value if error occurs
-            });
-            **/
-        //    return a random number for demonstration purposes
-            return Math.floor(Math.random() * 10) + 1; // Random number between 1 and 10
-        }
-
+        
         function populateTable(data) {
             const tableBody = document.getElementById('tableBody');
             
             // Ensure we have enough rows
             const currentRows = tableBody.children.length;
-            const neededRows = data.length-1; // Subtract 1 due to the header row in the CSV
+            const neededRows = data.length;
             
             // Add more rows if needed
             while (tableBody.children.length < neededRows) {
@@ -235,11 +323,10 @@
             }
             
             // Populate the data
-            //      remove column heading (row 0) in the data
-            console.log(data[5]);
-            for (let i = 1; i < data.length; i++) {
-                const row = tableBody.children[i-1];
-                const record = data[i];                
+            for (let i = 0; i < data.length; i++) {
+                const row = tableBody.children[i];
+                const record = data[i];
+                
                 // Vehicle Number (column 1)
                 const vehicleInput = row.children[1].querySelector('input');
                 if (vehicleInput) {
@@ -257,13 +344,6 @@
                 if (routeInput) {
                     routeInput.value = record.routeChoice;
                 }
-                // Capacity (column 4)
-                const capacityInput = row.children[4].querySelector('input');
-                if (capacityInput) {
-                    
-                    capacityInput.value = record.capacity;
-                }
-
             }
         }
         
@@ -273,8 +353,8 @@
             
             for (let i = 0; i < rows.length; i++) {
                 const row = rows[i];
-                // Clear editable columns (1, 2, 3, 4)
-                for (let j = 1; j <= 4; j++) {
+                // Clear editable columns (1, 2, 3)
+                for (let j = 1; j <= 3; j++) {
                     const input = row.children[j].querySelector('input');
                     if (input) {
                         input.value = '';
@@ -355,24 +435,23 @@
                 const vehicleNumber = row.children[1].querySelector('input').value;
                 const vehicleSales = row.children[2].querySelector('input').value;
                 const routeChoice = row.children[3].querySelector('input').value;
-                const capacity = row.children[4].querySelector('input').value; // from database
-
+                
                 if (vehicleNumber || vehicleSales || routeChoice) {
                     data.push({
                         vehicleNumber,
                         vehicleSales,
-                        routeChoice,
-                        capacity
+                        routeChoice
                     });
                 }
             }
             
-            // console.log('Current table data:', data);
+            console.log('Current table data:', data);
             return data;
         }
         
         // Initialize controls
         updateControls();
     </script>
+</body>
+</html>
 
-{% endblock %}

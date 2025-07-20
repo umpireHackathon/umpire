@@ -27,6 +27,17 @@ def get_vehicle(vehicle_id=None):
 
     return jsonify(results)
 
+@app_views.route('/vehicle/<vehicle_Number>/capacity', methods=['GET'])
+def get_vehicle_capacity(vehicle_Number=None):
+    """Returns the capacity of the vehicle using the given id.
+    """
+    print(f"Fetching capacity for vehicle: {vehicle_Number}...")
+    if vehicle_Number:
+        vehicle = storage.get_one_by(Vehicle, vehicle_number=vehicle_Number)
+        if vehicle:
+            return jsonify({"capacity": vehicle.capacity}), 200
+    return jsonify({"error": "Vehicle not found"}), 404
+
 def add_vehicle(vehicle_id=None):
     """Add new vehicle into the system.
     """

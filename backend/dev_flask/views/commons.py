@@ -42,6 +42,8 @@ def fetch_process(obj, fn, id_):
 
 def reach_endpoint(endpoints):
     """Creates a dictionary of methods and their endpoint functions"""
+    if not endpoints:
+        return {}
     return {allows[n]: i for n, i in enumerate(endpoints)}
 
 
