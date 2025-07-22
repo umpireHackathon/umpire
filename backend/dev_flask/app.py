@@ -287,8 +287,8 @@ def random_position():
 def optimize():
     from datetime import datetime
     try:
-        vehicles = requests.get(f'http://127.0.0.1:5000{VEHICLES_URL}', timeout=5).json()
-        routes = requests.get(f'http://127.0.0.1:5000{ROUTES_URL}', timeout=5).json()
+        vehicles = requests.get(f'http://127.0.0.1:{PORT}{VEHICLES_URL}', timeout=5).json()
+        routes = requests.get(f'http://127.0.0.1:{PORT}{ROUTES_URL}', timeout=5).json()
     except Exception as e:
         print(f"Error fetching vehicles: {str(e)}")
         vehicles = []
