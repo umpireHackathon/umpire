@@ -10,13 +10,15 @@ To create the PostgreSQL database and user required for this project, follow the
 
 ### 1. 📄 Create a `.env` file in the project root
 
-This file should contain your PostgreSQL superuser credentials:
+This file should contain your PostgreSQL user credentials:
 
 ```env
-PGUSER=<postgres>
-PGPASSWORD=<your_password>
-PGHOST=localhost
-PGPORT=5432
+UMPIRE_TYPE_STORAGE
+UMPIRE_DB_USER
+UMPIRE_DB_PWD
+UMPIRE_DB
+UMPIRE_DB_HOST
+UMPIRE_DB_PORT
 ```
 
 Make sure the following SQL files exist in the data/ directory:
