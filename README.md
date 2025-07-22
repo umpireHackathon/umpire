@@ -29,17 +29,28 @@ Depending on your platform:
 
 On Linux / WSL:
 ```
-$ chmod +x create_postgres_db.sh
-$ ./create_postgres_db.sh
+chmod +x create_postgres_db.sh
+./create_postgres_db.sh
 ```
 On Windows PowerShell:
 ```
-> .\create_postgres_db.ps1
+.\create_postgres_db.ps1
+```
+
+To populate data into into the umpire_db, run:  
+```
+python data/modeling/populate_db.py
 ```
 14 different tables are created
 
 ![plot](./assets/schema.png)
 
+
+## 🔧Start the flask app
+
+```
+python -m backend.dev_flask.app  
+```
 
 
 
