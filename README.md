@@ -46,6 +46,12 @@ python data/modeling/populate_db.py
 ![plot](./assets/schema.png)
 
 
+## Prediction endpoints
+
+1. Route Demand predictions:
+
+2. Travel Time Predictions:
+
 ## 🔧Start the flask app
 
 ```
