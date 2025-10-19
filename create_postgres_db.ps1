@@ -22,10 +22,23 @@ $sqlCreateTables     = "data/create_tables.sql"
 $sqlGrantPrivileges  = "data/grant_privileges.sql"
 
 # ---------------------------------------------------------------------------
-# Verify .env exists
+# Verify .env, create_db.sql, create_tables.sql and grant_privileges.sql exist
 # ---------------------------------------------------------------------------
 if (-not (Test-Path $envFile)) {
-    Write-Error ".env file not found. Please create one with PGUSER, PGPASSWORD, PGHOST, and PGPORT."
+    # Write-Error ".env file not found. Please create one with PGUSER, PGPASSWORD, PGHOST, and PGPORT."
+    # exit 1
+
+}
+if (-not (Test-Path $sqlCreateDb)) {
+    Write-Error "create_db.sql not found in data/ directory."
+    exit 1
+}
+if (-not (Test-Path $sqlCreateTables)) {
+    Write-Error "create_tables.sql not found in data/ directory."
+    exit 1
+}
+if (-not (Test-Path $sqlGrantPrivileges)) {
+    Write-Error "grant_privileges.sql not found in data/ directory."
     exit 1
 }
 
